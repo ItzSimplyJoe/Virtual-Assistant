@@ -1,0 +1,29 @@
+text,intent
+how are you?,greeting
+hello,greeting
+whats up,greeting
+thanks,greeting
+thank you so much,greeting
+good morning,greeting
+good afternoon,greeting
+bye,leaving
+see you later,leaving
+talk to you later,leaving
+how are you,greeting
+goodbye,leaving
+quit stop exit,leaving
+very smart,compliment
+you are awesome, compliment
+you are great, compliment
+screw you, insult
+you suck, insult
+you are so bad,insult
+i have to go,leaving
+repeat after me,repeat
+repeat what I say,repeat
+whats 8 x 3, maths
+x, maths
+/, maths
+whats 9 squared, maths
+-, maths
++, maths
