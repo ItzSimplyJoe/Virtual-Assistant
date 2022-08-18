@@ -86,14 +86,19 @@ def login():
     window.close()
 
 def checklogin(supplied_username, supplied_password):
-    logged_in = False
-    with open('logincredentials.txt', 'r') as file:
-        email, username, password = file.read().split('\n')
-    file.close()
-    if username == supplied_username and password == supplied_password:
-        maingui()
-    else:
-        sg.popup("Invalid Login. Try again")
+    with open('Logincredentials.txt', 'r') as file:
+        for line in file:
+            email, username, password = line.rstrip("\n").split(",")
+            print(email)
+            print(username)
+            print(password)
+            if username == supplied_username:
+                if password == supplied_password:
+                    window.close()
+                    maingui()
+                    break
+        else:
+            sg.popup("Invalid Login. Try again")
 
 
 def mainpage():
