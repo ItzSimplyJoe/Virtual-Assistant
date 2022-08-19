@@ -1,4 +1,5 @@
 from venv import create
+import random
 import PySimpleGUI as sg
 from mainprogramgui import maingui
 
@@ -89,12 +90,8 @@ def checklogin(supplied_username, supplied_password):
     with open('Logincredentials.txt', 'r') as file:
         for line in file:
             email, username, password = line.rstrip("\n").split(",")
-            print(email)
-            print(username)
-            print(password)
             if username == supplied_username:
                 if password == supplied_password:
-                    window.close()
                     maingui()
                     break
         else:
@@ -125,4 +122,11 @@ def mainpage():
     window.close()
 
 
-mainpage()
+
+def OTP():
+    otp = random.randint(100000,999999)
+    print (otp)
+
+
+OTP()
+#mainpage()
