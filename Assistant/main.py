@@ -22,10 +22,12 @@ class Assistant:
 
         replies = {
             'greeting' : reply,
+            'leaving' : reply,
+            'compliment' : reply,
             'insult' : reply,
             'personal_q' : reply,
             'repeat': repeat.repeat,
-            'maths' : maths
+            'maths' : maths.main
             }
 
         try:
@@ -85,4 +87,4 @@ class Assistant:
 access_key = "k+dAStF62RACtJcNtYFHyseWvW7mWw6fFuUrpPDDeXZ0UA44VVIBZA=="
 intentclassifier = IntentClassifier()
 assistant = Assistant("Assistant")
-Assistant.main()
+assistant.main()

@@ -1,3 +1,4 @@
+from tkinter import CENTER
 from venv import create
 import random
 import PySimpleGUI as sg
@@ -5,6 +6,7 @@ from mainprogramgui import maingui
 import smtplib
 from email.message import EmailMessage
 import ssl
+import os
 
 def progress_bar():
     sg.theme('BlueMono')
@@ -35,6 +37,7 @@ def create_account():
 
     
     while True:
+        total = 0
         event,values = window.read()
         if event == sg.WIN_CLOSED:
             break
@@ -43,13 +46,27 @@ def create_account():
                 email = values['-email-']
                 username = values['-username-']
                 if values['-password-'] != values['-rpassword-']:
-                    sg.popup_error("Error! Passwords do not match!", font=16)
+                    sg.popup("Error! Passwords do not match!", font=16)
                     continue
                 elif values['-password-'] == values['-rpassword-']:
                     password = values['-password-']
-                    window.close()
-                    accountcreation(email,username,password)
-                    break
+                    with open('logincredentials.txt', 'r') as file:
+                        for line in file:
+                            email1,username1,password = line.rstrip("\n").split(",")
+                            if email1 == email:
+                                sg.popup("Someone has already signed up with that email!")
+                                total = total + 1
+                                continue
+                            elif username1 == username:
+                                total = total + 1
+                                sg.popup("Someone has already signed up with that username!")
+                                continue
+                    if total > 0:
+                        continue
+                    elif total == 0:
+                        window.close()
+                        accountcreation(email,username,password)
+                        break                    
             elif event == "Back":
                 window.close()
                 mainpage()
@@ -65,7 +82,7 @@ def accountcreation(email,username,password):
 
 def login():
     sg.theme("Bluemono")
-    layout = [[sg.Text("Log In", size =(15, 1), font=40)],
+    layout = [[sg.Text("Log In", size =(15, 1), font=40), sg.Text("                                                                                        "), sg.Button("Forgotten Password?")],
             [sg.Text("Username", size =(15, 1), font=16),sg.InputText(key='-username-', font=16)],
             [sg.Text("Password", size =(15, 1), font=16),sg.InputText(key='-password-', password_char='*', font=16)],
              [sg.Button("Back"),  sg.Text("                                                                                                                                             "), sg.Button("Submit")]]
@@ -85,9 +102,56 @@ def login():
                 password = values['-password-']
                 username = values['-username-']
                 checklogin(username,password)
+            elif event == "Forgotten Password?":
+                window.close()
+                forgottenpassword()
 
 
     window.close()
+
+
+def forgottenpassword():
+    sg.theme("Bluemono")
+    fontsmall = ("Arial",11)
+    fontbig = ("Arial",40)
+    layout = [[sg.Text("Forgotten your password? ", size =(65, 1), font=40, justification=CENTER)],
+            [sg.Text("                  No worries, just input your email here and a one time password will be sent to the email", size =(70, 1), font=fontsmall, justification=CENTER)],
+            [sg.Text("                                                    This will allow you to create a new password", size =(65, 1), font=fontsmall)],
+            [sg.Text("Email", size =(65, 1), font=16, justification=CENTER)],
+            [sg.InputText(justification=CENTER, key='-email-', font=16, size=(65,1))],
+             [sg.Button("Back"),  sg.Text("                                                                                                                                                       "), sg.Button("Submit")]]
+    window = sg.Window("Forgotten password", layout)
+
+
+    while True:
+        event,values = window.read()
+        if event == sg.WIN_CLOSED:
+            break
+        else:
+            if event == "Back":
+                window.close()
+                login()
+            elif event == "Submit":
+                email = values['-email-']
+                window.close()
+                checkemail(email)
+    window.close()
+
+def checkemail(supplied_email):
+    total = 0
+    with open('Logincredentials.txt', 'r') as file:
+        for line in file:
+            email, username, password = line.rstrip("\n").split(",")
+            if email == supplied_email:
+                total = total + 1
+        print(total)
+        if total > 0:
+            OTP(supplied_email)
+        elif total == 0:
+            sg.popup("That email does not have an account in the system, create an account instead!")
+
+
+
 
 def checklogin(supplied_username, supplied_password):
     with open('Logincredentials.txt', 'r') as file:
@@ -128,16 +192,79 @@ def mainpage():
 
 def OTP(inputted_email):
     otp = random.randint(100000,999999)
-    print (otp)
-    port = 465
-    sender_email = 'joesvirtualassistant@gmail.com'
-    sender_email_pass = 'VirtualAssistant123'
-    context = ssl.create_default_context()
-    with smtplib.SMTP_SSL('smtp.gmail.com', port, context=context) as server:
-        server.login(sender_email, sender_email_pass)
-        message = ('Your OTP is {}').format(otp)
-        server.sendmail(sender_email, inputted_email, message)
+    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+        smtp.ehlo()
+        smtp.starttls()
+        smtp.ehlo()
 
-inputted_email = "joebostock30@gmail.com"
-OTP(inputted_email)
-#mainpage()
+        smtp.login('joesvirtualassistant@gmail.com' ,'kpflqtzddozqgjlj')
+
+        subject = 'One Time Password'
+        body = ('Your one time password is '+ str(otp))
+
+        msg = f'Subject: {subject}\n\n{body}'
+
+        smtp.sendmail('joesvirtualassistant@gmail.com', inputted_email, msg)
+    OTPscreen(inputted_email,otp)
+
+
+
+def OTPscreen(inputted_email,otp):
+    sg.theme('Bluemono')
+    layout = [[sg.Text("Change Password", size =(17, 1), font=40, justification='c')],
+             [sg.Text("One Time Password", size =(17, 1), font=16), sg.InputText(key='-otp-', font=16)],
+             [sg.Text("New Password", size =(17, 1), font=16), sg.InputText(key='-password-', font=16, password_char='*')],
+             [sg.Text("Re-Enter New Password", size =(17, 1), font=16), sg.InputText(key='-rpassword-', font=16, password_char='*')],
+             [sg.Button("Back"),  sg.Text("                                                                                                                                                  "), sg.Button("Submit")]]
+
+    window = sg.Window("Change Password", layout)
+
+    
+    while True:
+        event,values = window.read()
+        if event == sg.WIN_CLOSED:
+            break
+        else:
+            if event == "Submit":
+                email = inputted_email
+                inputted_otp = values['-otp-']
+                inputted_otp = int(inputted_otp)
+                otp = int(otp)
+                finalList = []
+                if inputted_otp == otp:
+                    if values['-password-'] != values['-rpassword-']:
+                        sg.popup("Error! Passwords do not match!", font=16)
+                        continue
+                    elif values['-password-'] == values['-rpassword-']:
+                        password = values['-password-']
+                        with open("logincredentials.txt",'r') as file:
+                            for line in file:
+                                if line[-1] == "\n":
+                                    finalList.append(line[:-1].split(','))
+                                else:
+                                    finalList.append(line.split(','))
+                            data = finalList
+                            for index in range(len(data)):
+                                if inputted_email == data[index][0]:
+                                    data[index][2] = password
+                                    break
+                            with open('logincredentials.txt', 'w') as file:
+                                for line in data:
+                                    print(','.join(line), file=file)
+                            window.close()
+                            login()
+                            break 
+                elif inputted_otp != otp:
+                    sg.popup("One time password is not valid!")                       
+            elif event == "Back":
+                window.close()
+                mainpage()
+    window.close()
+
+        
+
+    
+ 
+#OTP('joebostock30@gmail.com')
+
+mainpage()
