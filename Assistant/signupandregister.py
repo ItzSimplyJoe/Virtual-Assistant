@@ -2,6 +2,9 @@ from venv import create
 import random
 import PySimpleGUI as sg
 from mainprogramgui import maingui
+import smtplib
+from email.message import EmailMessage
+import ssl
 
 def progress_bar():
     sg.theme('BlueMono')
@@ -123,10 +126,18 @@ def mainpage():
 
 
 
-def OTP():
+def OTP(inputted_email):
     otp = random.randint(100000,999999)
     print (otp)
+    port = 465
+    sender_email = 'joesvirtualassistant@gmail.com'
+    sender_email_pass = 'VirtualAssistant123'
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL('smtp.gmail.com', port, context=context) as server:
+        server.login(sender_email, sender_email_pass)
+        message = ('Your OTP is {}').format(otp)
+        server.sendmail(sender_email, inputted_email, message)
 
-
-OTP()
+inputted_email = "joebostock30@gmail.com"
+OTP(inputted_email)
 #mainpage()
