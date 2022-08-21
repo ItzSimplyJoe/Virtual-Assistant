@@ -23,3 +23,8 @@ class IntentClassifier:
     
     def predict(self, text):
         return self.svm.predict(self.count_vect.transform([text]))[0]
+
+
+intent_classifier = IntentClassifier()
+
+#print(intent_classifier.predict("what is the biggest planet in our solar system"))

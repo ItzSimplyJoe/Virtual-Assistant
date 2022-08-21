@@ -7,6 +7,11 @@ class maths:
     def main(self, input_text, text, intent):
         samples = {
             'add' : {'func' : self.printcalculate, 'type' : 'addition'},
+            '+' : {'func' : self.printcalculate, 'type' : 'addition'},
+            '-' : {'func' : self.printcalculate, 'type' : 'subtraction'},
+            'x' : {'func' : self.printcalculate, 'type' : 'multiplication'},
+            '*' : {'func' : self.printcalculate, 'type' : 'multiplication'},
+            '/' : {'func' : self.printcalculate, 'type' : 'division'},
             'minus' : {'func' : self.printcalculate, 'type' : 'subtraction'},
             'take away' : {'func' : self.printcalculate, 'type' : 'subtraction'},
             'subtract' : {'func' : self.printcalculate, 'type' : 'subtraction'},
