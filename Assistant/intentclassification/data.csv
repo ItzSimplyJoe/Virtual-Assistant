@@ -13,12 +13,16 @@ talk to you later,leaving
 how are you,greeting
 see you later aligator,leaving
 goodbye,leaving
+poop,insult
 quit stop exit,leaving
 very smart,compliment
+poo,insult
+bum face,insult
 you are awesome,compliment
 you are great,compliment
 poo head,insult
 fart breath,insult
+thankyou,compliment
 butt wipe,insult
 screw you,insult
 you suck,insult
@@ -45,6 +49,11 @@ whats 9 squared,maths
 346 - 234,maths
 23 - 20,maths
 4 - 1,maths
+what is 93 x 5,maths
+what is 122 x 5,maths
+what is 34 / 12,maths
+what is 23 + 544,maths
+what is 535 - 325,maths
 when did world war 2 end,general_knowledge
 when did the battle of hastings take place,general_knowledge
 who was the leader of the nazis,general_knowledge

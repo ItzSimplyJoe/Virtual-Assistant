@@ -16,7 +16,6 @@ class Assistant:
     
     def reply(self, text):
         intent = intentclassifier.predict(text)
-        print(intent)
 
         replies = {
             'greeting' : reply,
