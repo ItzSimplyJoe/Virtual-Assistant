@@ -7,46 +7,51 @@ thank you so much,greeting
 good morning,greeting
 good afternoon,greeting
 bye,leaving
+alexa,greeting
 see you later,leaving
 talk to you later,leaving
 how are you,greeting
+see you later aligator,leaving
 goodbye,leaving
 quit stop exit,leaving
 very smart,compliment
-you are awesome, compliment
-you are great, compliment
-screw you, insult
-you suck, insult
-you stink, insult
+you are awesome,compliment
+you are great,compliment
+poo head,insult
+fart breath,insult
+butt wipe,insult
+screw you,insult
+you suck,insult
+you stink,insult
 you are so bad,insult
 i have to go,leaving
-8 x 3, maths
-8 x 2, maths
-9 / 4, maths
-whats 9 squared, maths
-84 - 4, maths
-1 + 2, maths
-9 x 3, maths
-1 x 10, maths
-53 x 105, maths
-93 / 4, maths
-49 / 14, maths
-142 / 1, maths
-23 / 4, maths
-3 + 5, maths
-25 + 52, maths
-45 + 43, maths
-453 - 63, maths
-346 - 234, maths
-23 - 20, maths
-4 - 1, maths
-when did world war 2 end, general_knowledge
-when did the battle of hastings take place, general_knowledge
-who was the leader of the nazis, general_knowledge
-who wrote romeo and juliet, general_knowledge
-who is the president of the united states of america, general_knowledge
-what is python, general_knowledge
-where is ukraine, general_knowledge
-where is the united kingdom, general_knowledge
-what is a potato, general_knowledge
-is a tomato a fruit or a vegetable, general_knowledge
+8 x 3,maths
+8 x 2,maths
+9 / 4,maths
+whats 9 squared,maths
+84 - 4,maths
+1 + 2,maths
+9 x 3,maths
+1 x 10,maths
+53 x 105,maths
+93 / 4,maths
+49 / 14,maths
+142 / 1,maths
+23 / 4,maths
+3 + 5,maths
+25 + 52,maths
+45 + 43,maths
+453 - 63,maths
+346 - 234,maths
+23 - 20,maths
+4 - 1,maths
+when did world war 2 end,general_knowledge
+when did the battle of hastings take place,general_knowledge
+who was the leader of the nazis,general_knowledge
+who wrote romeo and juliet,general_knowledge
+who is the president of the united states of america,general_knowledge
+what is python,general_knowledge
+where is ukraine,general_knowledge
+where is the united kingdom,general_knowledge
+what is a potato,general_knowledge
+is a tomato a fruit or a vegetable,general_knowledge

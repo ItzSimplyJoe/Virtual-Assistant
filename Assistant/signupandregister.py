@@ -2,7 +2,6 @@ from tkinter import CENTER
 from venv import create
 import random
 import PySimpleGUI as sg
-from mainprogramgui import maingui
 import smtplib
 from email.message import EmailMessage
 import ssl
@@ -159,7 +158,6 @@ def checklogin(supplied_username, supplied_password):
             email, username, password = line.rstrip("\n").split(",")
             if username == supplied_username:
                 if password == supplied_password:
-                    maingui("main.py")
                     break
         else:
             sg.popup("Invalid Login. Try again")

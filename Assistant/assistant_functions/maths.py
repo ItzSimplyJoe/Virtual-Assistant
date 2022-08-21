@@ -4,7 +4,7 @@ import math
 import random
 
 class maths:
-    def main(self, input_text, text, intent):
+    def main(self, input_text, text):
         samples = {
             'add' : {'func' : self.printcalculate, 'type' : 'addition'},
             '+' : {'func' : self.printcalculate, 'type' : 'addition'},
@@ -79,7 +79,4 @@ class maths:
 
 
 maths = maths()
-
-
-
 

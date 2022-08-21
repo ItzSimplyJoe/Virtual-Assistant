@@ -1,6 +1,8 @@
 {
-    "hello" :  ["hi", "how can i help"],
+    "hello" :  ["hi","hello", "how can i help", "shut up noone cares"],
+    "hi" :  ["hi","hello", "how can i help", "shut up noone cares"],
     "how are you" : ["awesome", "i am good, hope you are too"],
     "thank you" : ["You're welcome", "No problem"],
-    "whats up" : ["Not much"]
+    "whats up" : ["Not much", "whats up with you?", "The sky"],
+    "alexa" : ["Alexa stinks!", "im so much better than alexa!!"]
 }

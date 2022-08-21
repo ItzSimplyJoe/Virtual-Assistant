@@ -16,9 +16,7 @@ class Assistant:
     
     def reply(self, text):
         intent = intentclassifier.predict(text)
-        if intent == 'leaving':
-            speak_listen.say("Exiting")
-            quit()
+        print(intent)
 
         replies = {
             'greeting' : reply,
