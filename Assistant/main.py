@@ -5,6 +5,7 @@ from intentclassification.intent_classification import IntentClassifier
 from assistant_functions.reply import reply
 from assistant_functions.maths import maths
 from assistant_functions.repeat import repeat
+from assistant_functions.wikisearch import wikisearch
 import struct
 import multiprocessing
 
@@ -24,7 +25,8 @@ class Assistant:
             'insult' : reply,
             'personal_q' : reply,
             'repeat': repeat.repeat,
-            'maths' : maths.main
+            'maths' : maths.main,
+            'wikisearch' : wikisearch.main
             }
 
         try:
@@ -83,5 +85,4 @@ class Assistant:
     
 access_key = "k+dAStF62RACtJcNtYFHyseWvW7mWw6fFuUrpPDDeXZ0UA44VVIBZA=="
 intentclassifier = IntentClassifier()
-assistant = Assistant("Assistant")
-assistant.main()
+assistant = Assistant("Jarvis")

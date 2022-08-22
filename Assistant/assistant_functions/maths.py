@@ -6,18 +6,22 @@ import random
 class maths:
     def main(self, text, intent):
         samples = {
-            'add' : {'func' : self.addition, 'type' : 'addition'},
-            '+' : {'func' : self.addition, 'type' : 'addition'},
-            '-' : {'func' : self.subtraction, 'type' : 'subtraction'},
-            'x' : {'func' : self.multiplication, 'type' : 'multiplication'},
-            '*' : {'func' : self.multiplication, 'type' : 'multiplication'},
-            '/' : {'func' : self.division, 'type' : 'division'},
-            'minus' : {'func' : self.subtraction, 'type' : 'subtraction'},
-            'take away' : {'func' : self.subtraction, 'type' : 'subtraction'},
-            'subtract' : {'func' : self.subtraction, 'type' : 'subtraction'},
-            'times' : {'func' : self.multiplication, 'type' : 'multiplication'},
-            'multiplied by' : {'func' : self.multiplication, 'type' : 'multiplication'},
-            'divded by' : {'func' : self.division, 'type' : 'division'}
+            'add' : {'func' : self.addition},
+            '+' : {'func' : self.addition},
+            '-' : {'func' : self.subtraction},
+            'x' : {'func' : self.multiplication},
+            '*' : {'func' : self.multiplication},
+            '/' : {'func' : self.division},
+            'minus' : {'func' : self.subtraction},
+            'take away' : {'func' : self.subtraction},
+            'subtract' : {'func' : self.subtraction},
+            'times' : {'func' : self.multiplication},
+            'multiplied by' : {'func' : self.multiplication},
+            '√' : {'func' : self.squareroot},
+            'squareroot' :{'func' : self.squareroot},
+            'square' :{'func' : self.square},
+            'squared' :{'func' : self.squared},
+            'divded by' : {'func' : self.division}
         }
         
         most_similar = determine_most_similar_phrase(text, samples)
@@ -39,13 +43,11 @@ class maths:
         total = 0
         for x in range (0,len(numbers)):
             total = total + int(numbers[x])
-        print(total)
         self.printcalculate(total)
 
     def subtraction(self,text):
         numbers = self.splittext(text)
         total = int(numbers[0]) - int(numbers[1])
-        print(total)
         self.printcalculate(total)
 
     def multiplication(self,text):
@@ -53,13 +55,21 @@ class maths:
         total = 1
         for x in range (0,len(numbers)):
             total = total * int(numbers[x])
-        print(total)
         self.printcalculate(total)
 
     def division(self,text):
         numbers = self.splittext(text)
         total = int(numbers[0]) / int(numbers[1])
-        print(total)
+        self.printcalculate(total)
+
+    def square(self,text):
+        numbers = self.splittext(text)
+        total = maths.square(numbers[0])
+        self.printcalculate(total)
+
+    def squareroot(self,text):
+        numbers = self.splittext(text)
+        total = maths.squareroot(numbers[0])
         self.printcalculate(total)
     
     def printcalculate(self, text):

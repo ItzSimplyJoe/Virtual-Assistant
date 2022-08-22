@@ -6,6 +6,7 @@ import smtplib
 from email.message import EmailMessage
 import ssl
 import os
+from mainprogramgui import mainui
 
 def progress_bar():
     sg.theme('BlueMono')
@@ -100,6 +101,7 @@ def login():
             elif event == "Submit":
                 password = values['-password-']
                 username = values['-username-']
+                window.close()
                 checklogin(username,password)
             elif event == "Forgotten Password?":
                 window.close()
@@ -158,9 +160,13 @@ def checklogin(supplied_username, supplied_password):
             email, username, password = line.rstrip("\n").split(",")
             if username == supplied_username:
                 if password == supplied_password:
-                    break
-        else:
-            sg.popup("Invalid Login. Try again")
+                    mainui()
+                else:
+                    sg.popup("Invalid Login. Try again")
+                    login()
+            else:
+                sg.popup("Invalid Login. Try again")
+                login()
 
 
 def mainpage():

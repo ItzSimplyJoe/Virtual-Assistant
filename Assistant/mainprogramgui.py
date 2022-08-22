@@ -1,6 +1,8 @@
+from ast import Assign
 from tkinter import CENTER
 import PySimpleGUI as sg
 import os.path
+from main import assistant
 
 
 def mainui():
@@ -32,7 +34,6 @@ def mainui():
 
     window = sg.Window("Virtual Asisstant", layout)
     while True:
-        print = sg.Print
         event, values = window.read()
         if event == "Exit" or event == sg.WIN_CLOSED:
             break
@@ -41,12 +42,10 @@ def mainui():
             print(input)
         else:
             continue
-    window.close()
+    assistant.main()
 
 
 
 
 def maingui(runfile):
     print("wow you logged in")
-
-mainui()
