@@ -23,6 +23,7 @@ def mainui():
     rightside = [
         [sg.Text(" ")],
         [sg.Text("How can i help?", size =(13, 1), font=bodyfonts),sg.InputText(key='-input-', size = (40,1), do_not_clear=False), sg.Button("Submit")],
+        [sg.Button("Press to activate voice controls")],
     ]
 
     layout = [
@@ -40,6 +41,8 @@ def mainui():
         if event == "submit":
             input = values['-input-']
             print(input)
+        if event == "Press to activate voice controls":
+            assistant.main()
         else:
             continue
     assistant.main()
