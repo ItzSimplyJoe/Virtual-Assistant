@@ -46,7 +46,7 @@ class Assistant:
         audio_stream = None
 
 
-        self.porcupine = pvporcupine.create(access_key = access_key,keywords=["jarvis"])
+        self.porcupine = pvporcupine.create(access_key = "K3bYmOitsrCNs5ai3C0qQLkcKhWPaVd59cP5+tkpANbq0NCm1nBc7g==",keywords=["Oi Badger"])
 
         pa = pyaudio.PyAudio()
 
@@ -82,7 +82,9 @@ class Assistant:
 
                 self.reply(said)
                 
-    
-access_key = "k+dAStF62RACtJcNtYFHyseWvW7mWw6fFuUrpPDDeXZ0UA44VVIBZA=="
+porcupine = pvporcupine.create(
+    access_key = "K3bYmOitsrCNs5ai3C0qQLkcKhWPaVd59cP5+tkpANbq0NCm1nBc7g==",
+    keyword_paths = './badgerwakeword.ppn'
+    )   
 intentclassifier = IntentClassifier()
 assistant = Assistant("Jarvis")

@@ -7,7 +7,7 @@ pa = None
 audio_stream = None
 
 
-porcupine = pvporcupine.create(keywords=["jarvis"])
+porcupine = pvporcupine.create(keywords=["Oi Badger"])
 
 pa = pyaudio.PyAudio()
 
