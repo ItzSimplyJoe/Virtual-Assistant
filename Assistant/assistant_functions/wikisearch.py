@@ -16,7 +16,7 @@ class wikisearch:
         try:
             question = text
             query = question.replace(' ','+')
-            driver = webdriver.Chrome(r'"C:\Users\Owner\OneDrive\Desktop\CleeveComp3\Assistant\ChromeSetup.exe"')
+            driver = webdriver.Chrome(r'C:\Users\Owner\OneDrive\Desktop\CleeveComp3\Assistant\ChromeSetup.exe')
             driver.get('https://www.google.com/search?q='+query)
             time.sleep(1.5)
             box = driver.find_element("xpath",'/html/body/div[3]/div[3]/span/div/div/div/div[3]/div[1]/button[2]/div').click()
