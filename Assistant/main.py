@@ -6,6 +6,7 @@ from assistant_functions.reply import reply
 from assistant_functions.maths import maths
 from assistant_functions.repeat import repeat
 from assistant_functions.wikisearch import wikisearch
+from assistant_functions.translate import translate
 import struct
 import multiprocessing
 import os
@@ -27,7 +28,8 @@ class Assistant:
             'personal_q' : reply,
             'repeat': repeat.repeat,
             'maths' : maths.main,
-            'wikisearch' : wikisearch.main
+            'wikisearch' : wikisearch.main,
+            'translate' : translate.main
             }
 
         try:
