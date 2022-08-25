@@ -8,6 +8,7 @@ from assistant_functions.repeat import repeat
 from assistant_functions.wikisearch import wikisearch
 import struct
 import multiprocessing
+import os
 
 class Assistant:
 
@@ -46,7 +47,11 @@ class Assistant:
         audio_stream = None
 
 
-        self.porcupine = pvporcupine.create(access_key = "K3bYmOitsrCNs5ai3C0qQLkcKhWPaVd59cP5+tkpANbq0NCm1nBc7g==",keywords=["Oi Badger"])
+        self.porcupine = pvporcupine.create(
+        access_key = "K3bYmOitsrCNs5ai3C0qQLkcKhWPaVd59cP5+tkpANbq0NCm1nBc7g==",
+        keyword_paths = ['C:/Users/Owner/OneDrive/Desktop/CleeveComp3/Assistant/Keywords/badger.ppn'],
+        keywords = ['Oi Badger']
+        )   
 
         pa = pyaudio.PyAudio()
 
@@ -81,10 +86,9 @@ class Assistant:
                 print(said)
 
                 self.reply(said)
-                
-porcupine = pvporcupine.create(
-    access_key = "K3bYmOitsrCNs5ai3C0qQLkcKhWPaVd59cP5+tkpANbq0NCm1nBc7g==",
-    keyword_paths = './badgerwakeword.ppn'
-    )   
+
+
+
 intentclassifier = IntentClassifier()
-assistant = Assistant("Jarvis")
+assistant = Assistant("Badger")
+assistant.main()
