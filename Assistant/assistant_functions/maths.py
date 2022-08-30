@@ -20,7 +20,7 @@ class maths:
             '√' : {'func' : self.squareroot},
             'squareroot' :{'func' : self.squareroot},
             'square' :{'func' : self.square},
-            'squared' :{'func' : self.squared},
+            'squared' :{'func' : self.square},
             'divded by' : {'func' : self.division}
         }
         

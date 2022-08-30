@@ -5,7 +5,8 @@ from googletrans import Translator
 class translate:
     def main(self, text, intent):
         samples = {
-            'what language' : {'func' : self.langdetect},
+            'what language is bonjour' : {'func' : self.langdetect},
+            'whats hello in french' : {'func' : self.translate},
             'translate' : {'func' : self.translate}
         }
         
@@ -28,16 +29,17 @@ class translate:
 
     def langdetect(self,text):
         text = self.removaloftext(text)
+        result = translator.detect(text)
+        speak_listen.say(result)
+        #print(result)
         
-
-
-
 
     def translate(self, text):
         lang,text = self.detectlang(text)
         text = self.removaloftext(text)
         translatedtext = translator.translate(text, dest=lang)
         speak_listen.say(translatedtext)
+        #print(translatedtext)
 
     def detectlang(self, text):
         text = text.lower()
@@ -61,3 +63,4 @@ class translate:
 
 translator = Translator()
 translate = translate()
+print(translate.translate(input("Enter Question: ")))

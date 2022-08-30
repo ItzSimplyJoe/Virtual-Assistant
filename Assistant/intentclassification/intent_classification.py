@@ -49,3 +49,4 @@ class IntentClassifier: ### Makes use of naive bayes classifier algorithm
 
 
 intent_classifier = IntentClassifier()
+print(intent_classifier.predict("What's hello in French"))

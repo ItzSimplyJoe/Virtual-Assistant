@@ -1,3 +1,5 @@
+#The Sign Up and Register Modules
+#Importing the modules
 from tkinter import CENTER
 from venv import create
 import random
@@ -8,7 +10,7 @@ import ssl
 import os
 from mainprogramgui import mainui
 
-def progress_bar():
+def progress_bar(): ## A pointless progress bar for aethestics, works by increasing the amount completed by 1 each time the function loops
     sg.theme('BlueMono')
     layout = [[sg.Text('Creating your account...')],
             [sg.ProgressBar(1000, orientation='h', size=(20, 20), key='progbar')],
@@ -24,7 +26,7 @@ def progress_bar():
 
 
 
-def create_account():
+def create_account():#Account creation, broken down into the layout, and the functionality
     sg.theme('Bluemono')
     layout = [[sg.Text("Sign Up", size =(17, 1), font=40, justification='c')],
              [sg.Text("E-mail", size =(17, 1),font=16), sg.InputText(key='-email-', font=16)],
@@ -35,20 +37,20 @@ def create_account():
 
     window = sg.Window("Sign Up", layout)
 
-    
+    #while the program is running check to see if the window has been closed
     while True:
         total = 0
         event,values = window.read()
         if event == sg.WIN_CLOSED:
             break
         else:
-            if event == "Submit":
+            if event == "Submit": #if the button submit is pressed, it takes the values of the email, username and password boxes and checks if the two password boxes match
                 email = values['-email-']
                 username = values['-username-']
                 if values['-password-'] != values['-rpassword-']:
                     sg.popup("Error! Passwords do not match!", font=16)
                     continue
-                elif values['-password-'] == values['-rpassword-']:
+                elif values['-password-'] == values['-rpassword-']: ## if they match, it adds all of the credentials to the logincredentials.txt
                     password = values['-password-']
                     with open('logincredentials.txt', 'r') as file:
                         for line in file:
