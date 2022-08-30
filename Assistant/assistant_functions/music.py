@@ -10,8 +10,10 @@ import urllib.parse
 import urllib.request
 
 class Music:
-    def main(self,text,intent):
-        text = self.keyword(text)
+    def main(self,text):
+        text = text.lower()
+        if 'play' in text:
+            text = text.replace('play','')
         self.play(text)
 
 
@@ -25,14 +27,13 @@ class Music:
         videolink =video.getbestaudio()
         media = vlc.MediaPlayer(videolink.url)  
         media.play()
-        time.sleep(video.duration)
+        duration = video.duration
+        hours,mins,seconds = duration.split(":")
+        seconds = int(seconds)
+        seconds2 = (int(mins) * 60)
+        seconds3 = (int(hours) * 3600)
+        vidlength = seconds + seconds2 + seconds3
+        time.sleep(vidlength)
         media.stop()
-            
-    def keyword(self,text):
-        text = text.lower()
-        if 'play' in text:
-            text.replace('play', '')
-        return text
-        
-
+    
 music = Music()

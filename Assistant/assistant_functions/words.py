@@ -1,6 +1,7 @@
 from assistant_functions.speak_listen import speak_listen
 from assistant_functions.determine_most_similar import determine_most_similar_phrase
 from pydictionary import Dictionary
+import random
 class words:
     def main(self, text, intent):
         samples = {
@@ -17,26 +18,48 @@ class words:
 
     def spell(self,text):
         word = self.keywords(text)
+        word = word.split()
         spelling = list(word)
-        speak_listen.say(spelling , word)
+        words = (spelling + word)
+        print (words)
+        speak_listen.say(words)
 
     def definition(self,text):
         word = self.keywords(text)
-        dict = Dictionary(word,1)
+        dict = Dictionary(word,0)
         speak_listen.say(dict.meanings())
+    
+    def synonym(self,text):
+        stuff = Dictionary.synonyms(text)
+        print(stuff)
+    
+    def antonym(self,text):
+        stuff = Dictionary.antonyms(text)
+        print(stuff)
 
 
     def keywords(self,text):
+        text = text.lower()
         if 'how to spell' in text:
-            text.replace('how to spell','')
+            text = text.replace('how to spell','')
+            self.keywords(text)
         if 'how do i spell' in text:
-            text.replace('how do i spell','')
+            text = text.replace('how do i spell','')
+            self.keywords(text)
         if 'how do you spell' in text:
-            text.replace('how do you spell','')
+            text = text.replace('how do you spell','')
+            self.keywords(text)
         if 'whats the opposite of' in text:
-            text.replace('whats the opposite of','')
+            text = text.replace('whats the opposite of','')
+            self.keywords(text)
         if 'mean' in text:
-            text.replace('mean', '')
+            text = text.replace('mean', '')
+            self.keywords(text)
+        if 'what does' in text:
+            text = text.replace('what does','')
+            self.keywords(text)
+        if ' ' in text:
+            text = text.replace(' ', '')
         return text
 
 
