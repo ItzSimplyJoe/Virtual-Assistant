@@ -33,7 +33,6 @@ class IntentClassifier: ### Makes use of naive bayes classifier algorithm
             reader = csv.reader(f, delimiter=',')
             intent = self.svm.predict(self.count_vect.transform([text]))[0]
             data = (text+","+intent)
-            print(data)
             for row in reader:
                 for field in row:
                     if field == text:
@@ -49,4 +48,3 @@ class IntentClassifier: ### Makes use of naive bayes classifier algorithm
 
 
 intent_classifier = IntentClassifier()
-print(intent_classifier.predict("What's hello in French"))

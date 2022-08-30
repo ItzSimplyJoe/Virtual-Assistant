@@ -8,6 +8,7 @@ from assistant_functions.repeat import repeat
 from assistant_functions.wikisearch import wikisearch
 from assistant_functions.translate import translate
 from assistant_functions.musicplayer import Music
+from assistant_functions.words import words
 import struct
 import multiprocessing
 import os
@@ -30,6 +31,7 @@ class Assistant:
             'maths' : maths.main,
             'wikisearch' : wikisearch.main,
             'translate' : translate.main,
+            'words' : words.main,
             'music' : Music.main
             }
 

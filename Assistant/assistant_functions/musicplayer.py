@@ -11,27 +11,28 @@ import urllib.request
 
 class Music:
     def main(self,text,intent):
-        text = self.keywords(text)
+        text = self.keyword(text)
         self.play(text)
 
 
     def play(self,text):
-            query_string = urllib.parse.urlencode({"search_query": text})
-            formatUrl = urllib.request.urlopen("https://www.youtube.com/results?" + query_string)
-            search_results = re.findall(r"watch\?v=(\S{11})", formatUrl.read().decode())
-            clip2 = "https://www.youtube.com/watch?v=" + "{}".format(search_results[0])
-            video = pafy.new(clip2) 
-            videolink =video.getbestaudio()  
-            print("audio is playing")  
-            media = vlc.MediaPlayer(videolink.url)  
-            media.play()
-            time.sleep(30)
-            media.stop()
+        songname = urllib.parse.urlencode({"search_query": text})
+        url = urllib.request.urlopen("https://www.youtube.com/results?" + songname)
+        results = re.findall(r"watch\?v=(\S{11})", url.read().decode())
+        clip = "https://www.youtube.com/watch?v=" + "{}".format(results[0])
+        self._dislikes = 0
+        video = pafy.new(clip) 
+        videolink =video.getbestaudio()
+        media = vlc.MediaPlayer(videolink.url)  
+        media.play()
+        time.sleep(video.duration)
+        media.stop()
             
-    def keywords(self,text):
+    def keyword(self,text):
         text = text.lower()
         if 'play' in text:
             text.replace('play', '')
+        return text
         
 
 music = Music()

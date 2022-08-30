@@ -19,11 +19,11 @@ class translate:
         text = text.lower()
         if 'how do i say' in text:
             text.replace('how do i say', '')
-        elif 'what is' in text:
+        if 'what is' in text:
             text.replace('what is', '')
-        elif "what's" in text:
+        if "what's" in text:
             text.replace("what's",'')
-        elif 'what language is' in text:
+        if 'what language is' in text:
             text.replace('what language is','')
         return text            
 
@@ -46,21 +46,20 @@ class translate:
         if "french" in text:
             lang = 'fr'
             text.replace('french', '')
-        elif "spanish" in text:
+        if "spanish" in text:
             lang = 'es'
             text.replace('spanish', '')
-        elif "chinese" in text:
+        if "chinese" in text:
             lang = 'zh-cn'
             text.replace('chinese', '')
-        elif "italian" in text:
+        if "italian" in text:
             lang = 'it'
             text.replace('italian', '')
-        elif 'english' in text:
+        if 'english' in text:
             lang = 'en'
             text.replace('english', '')
-        return lang,text
+        return lang , text
 
 
 translator = Translator()
 translate = translate()
-print(translate.translate(input("Enter Question: ")))

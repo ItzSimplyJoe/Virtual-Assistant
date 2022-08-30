@@ -2,7 +2,7 @@
     "hello" :  ["hi","hello", "how can i help", "shut up noone cares"],
     "hi" :  ["hi","hello", "how can i help", "shut up noone cares"],
     "how are you" : ["awesome", "i am good, hope you are too"],
-    "thank you" : ["You're welcome", "No problem"],
+    "thank you" : ["You are very welcome", "you're welcome", "you are most welcome", "no problemo", "no problem", "any time"],
     "whats up" : ["Not much", "whats up with you?", "The sky"],
     "alexa" : ["Alexa stinks!", "im so much better than alexa!!"]
 }
