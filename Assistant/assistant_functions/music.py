@@ -9,13 +9,12 @@ import subprocess
 import urllib.parse
 import urllib.request
 
-class Music:
-    def main(self,text):
+class music:
+    def main(self,text,intent):
         text = text.lower()
         if 'play' in text:
             text = text.replace('play','')
         self.play(text)
-
 
     def play(self,text):
         songname = urllib.parse.urlencode({"search_query": text})
@@ -36,4 +35,4 @@ class Music:
         time.sleep(vidlength)
         media.stop()
     
-music = Music()
+music = music()
