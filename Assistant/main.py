@@ -2,7 +2,6 @@ from assistant_functions.speak_listen import speak_listen
 from intentclassification.intent_classification import IntentClassifier
 from assistant_functions.reply import reply
 from assistant_functions.maths import maths
-from assistant_functions.repeat import repeat
 from assistant_functions.wikisearch import wikisearch
 from assistant_functions.translate import translate
 from assistant_functions.music import music
@@ -23,7 +22,6 @@ class Assistant:
             'leaving' : reply,
             'compliment' : reply,
             'insult' : reply,
-            'repeat': repeat.repeat,
             'maths' : maths.main,
             'wikisearch' : wikisearch.main,
             'translate' : translate.main,
