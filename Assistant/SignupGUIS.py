@@ -9,6 +9,8 @@ from email.message import EmailMessage
 import ssl
 import os
 from main import *
+from text import *
+from voice import *
 
 def progress_bar(): ## A pointless progress bar for aethestics, works by increasing the amount completed by 1 each time the function loops
     sg.theme('BlueMono')
@@ -162,7 +164,7 @@ def checklogin(supplied_username, supplied_password):
             email, username, password = line.rstrip("\n").split(",")
             if username == supplied_username:
                 if password == supplied_password:
-                    assistant.main()
+                    inputchoice()
                 else:
                     sg.popup("Invalid Login. Try again")
                     login()
@@ -266,5 +268,29 @@ def OTPscreen(inputted_email,otp):
                 window.close()
                 mainpage()
     window.close()
+
+def inputchoice():
+    sg.theme("Bluemono")
+    layout = [[sg.Text("    Would you like to use Voice or Text?", size =(30, 1), font=40)],
+            [sg.Button("Voice", size =(30, 1), font=40)],
+            [sg.Text("", size =(30, 1), font=40)],
+            [sg.Button("Text", size =(30, 1), font=40)]]
+
+    window = sg.Window("Virtual Assistant", layout)
+
+    while True:
+        event,values = window.read()
+        if event == "Cancel" or event == sg.WIN_CLOSED:
+            break
+        else:
+            if event == "Voice":
+                window.close()
+                voice.main()
+            elif event == "Text":
+                window.close()
+                text.main()
+
+    window.close()
+
 
 mainpage()

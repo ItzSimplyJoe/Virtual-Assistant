@@ -12,6 +12,7 @@ class Speak_Listen:
         self.mic = sr.Microphone()
 
     def say(self, text):
+        print(text)
         self.speech_engine.say(text, "speech")
         self.speech_engine.runAndWait()
         
