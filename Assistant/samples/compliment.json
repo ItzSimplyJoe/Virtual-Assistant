@@ -1,3 +1,4 @@
 {
-    "you are awesome" :  ["thankyou", "so are you"]
+    "you are awesome" :  ["thankyou", "so are you"],
+    "thanks for the help" : ["You are very welcome", "you are welcome", "no worries"]
 }

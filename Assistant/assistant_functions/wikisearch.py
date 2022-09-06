@@ -9,7 +9,7 @@ class wikisearch:
 
     def search(self,text):
         try:
-            result = wikipedia.summary(text, sentences = 2)
+            result = wikipedia.summary(text, sentences = 1)
             #print(result)
             speak_listen.say(result)
         except:
