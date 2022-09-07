@@ -78,8 +78,7 @@ def create_account():#Account creation, broken down into the layout, and the fun
 
 def accountcreation(email,username,password):
     file = open("logincredentials.txt", "a")
-    file.write ((email) + "," + (username) + "," + (password))
-    file.write("\n")
+    file.write ((email) + "," + (username) + "," + (password) + "\n")
     file.close()
     progress_bar()
     mainpage()
