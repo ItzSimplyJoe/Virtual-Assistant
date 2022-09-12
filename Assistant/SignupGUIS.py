@@ -56,7 +56,7 @@ def create_account():#Account creation, broken down into the layout, and the fun
                     password = values['-password-']
                     with open('logincredentials.txt', 'r') as file:
                         for line in file:
-                            email1,username1,password = line.rstrip("\n").split(",")
+                            email1,username1,password1 = line.rstrip("\n").split(",")
                             if email1 == email:
                                 sg.popup("Someone has already signed up with that email!")
                                 total = total + 1
@@ -164,12 +164,9 @@ def checklogin(supplied_username, supplied_password):
             if username == supplied_username:
                 if password == supplied_password:
                     inputchoice()
-                else:
-                    sg.popup("Invalid Login. Try again")
-                    login()
-            else:
-                sg.popup("Invalid Login. Try again")
-                login()
+        else:
+            sg.popup("Incorrect login, please try again")
+            login()
 
 
 def mainpage():

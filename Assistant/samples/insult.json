@@ -1,11 +1,10 @@
 {
     "you are bad" :  ["that's not nice!", "you are mean", "i am sorry."],
     "you stink" :  ["that's not nice!", "you are mean", "i think thats just your breath"],
-    "screw you" :  ["that's not nice!", "you are mean", "i am sorry."],
+    "screw you" :  ["that's not nice!", "you are mean", "i am sorry.", "you utter plonker"],
     "poo head" :  ["you are talking to the wrong virtual assistant, the real poo head is Alexa!"],
     "butt wipe" :  ["that's not nice!", "you are mean", "i am sorry."],
     "fart breath" :  ["that's not nice!", "you are mean", "thats just your breath"],
     "bum face" :  ["that's not nice!", "you are mean", "i am sorry."],
-    "potato head" :  ["that's not nice!", "you are mean", "i am sorry."],
-    "poo" : ["poooooooooooooooooooo"]
+    "potato head" :  ["that's not nice!", "you are mean", "i am sorry."]
 }

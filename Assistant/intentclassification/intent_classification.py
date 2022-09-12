@@ -9,7 +9,7 @@ from io import StringIO
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-class IntentClassifier: ### Makes use of naive bayes classifier algorithm
+class IntentClassifier: ### Makes use of naive bayes classifier algorithm ###
     def __init__(self):
         self.data = pd.read_csv('intentclassification/data.csv')
         self.train()
@@ -43,6 +43,7 @@ class IntentClassifier: ### Makes use of naive bayes classifier algorithm
                 writer = csv.writer(file)
                 list = [text,intent]
                 writer.writerow(list)
+                writer.writerow("")
                 file.close()
 
 

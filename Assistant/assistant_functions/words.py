@@ -1,6 +1,6 @@
 from assistant_functions.speak_listen import speak_listen
 from assistant_functions.determine_most_similar import determine_most_similar_phrase
-from pydictionary import Dictionary
+from PyDictionary import PyDictionary
 import random
 class words:
     def main(self, text, intent):
@@ -17,9 +17,10 @@ class words:
         func(text)
 
     def spell(self,text):
+        spelling = []
         word = self.keywords(text)
-        word = word.split()
-        spelling = list(word)
+        for letter in word:
+            spelling.append(letter)
         words = (spelling + word)
         print (words)
         speak_listen.say(words)

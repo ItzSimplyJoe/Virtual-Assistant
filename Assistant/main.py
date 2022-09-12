@@ -6,6 +6,7 @@ from assistant_functions.wikisearch import wikisearch
 from assistant_functions.translate import translate
 from assistant_functions.music import music
 from assistant_functions.words import words
+from assistant_functions.jokes import jokes
 
 
 class Assistant:
@@ -22,11 +23,13 @@ class Assistant:
             'leaving' : reply,
             'compliment' : reply,
             'insult' : reply,
+            'questions' : reply,
             'maths' : maths.main,
             'wikisearch' : wikisearch.main,
             'translate' : translate.main,
             'words' : words.main,
-            'music' : music.main
+            'music' : music.main,
+            'jokes' : jokes.main
             }
 
         try:
@@ -40,7 +43,6 @@ class Assistant:
             print("Error: " + str(e))
     
  
-
 
 intentclassifier = IntentClassifier()
 assistant = Assistant("Badger")
