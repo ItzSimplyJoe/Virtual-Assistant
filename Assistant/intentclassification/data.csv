@@ -137,8 +137,14 @@ How old is prince charles,wikisearch
 what is your name,questions
 who made this,questions
 what can you do,questions
-can you tell me a joke,joke
-tell me a joke,joke
-tell me a funny joke,joke
+can you tell me a joke,jokes
+tell me a joke,jokes
+tell me a funny joke,jokes
 
 
+tell me another joke,jokes
+
+can i get another joke,jokes
+
+play whats your favourite vegetable,music
+

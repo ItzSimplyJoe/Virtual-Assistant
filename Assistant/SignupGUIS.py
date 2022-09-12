@@ -85,10 +85,10 @@ def accountcreation(email,username,password):
 
 def login():
     sg.theme("Bluemono")
-    layout = [[sg.Text("Log In", size =(15, 1), font=40), sg.Text("                                                                                        "), sg.Button("Forgotten Password?")],
+    layout = [[sg.Text("Log In", size =(15, 1), font=40), sg.Text("                                                                 "), sg.Button("Forgotten Password?")],
             [sg.Text("Username", size =(15, 1), font=16),sg.InputText(key='-username-', font=16)],
             [sg.Text("Password", size =(15, 1), font=16),sg.InputText(key='-password-', password_char='*', font=16)],
-             [sg.Button("Back"),  sg.Text("                                                                                                                                             "), sg.Button("Submit")]]
+             [sg.Button("Back"),  sg.Text("                                                                                                               "), sg.Button("Submit")]]
 
 
     window = sg.Window("Log In", layout)
