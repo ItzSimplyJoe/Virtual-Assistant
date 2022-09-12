@@ -1,7 +1,6 @@
 #The Sign Up and Register Modules
-#Importing the modules
+#Importing the modules that are used to make this all functional
 from tkinter import CENTER
-from venv import create
 import random
 import PySimpleGUI as sg
 import smtplib
@@ -26,8 +25,6 @@ def progress_bar(): ## A pointless progress bar for aethestics, works by increas
         window['progbar'].update_bar(i + 1)
     window.close()
 
-
-
 def create_account():#Account creation, broken down into the layout, and the functionality
     sg.theme('Bluemono')
     layout = [[sg.Text("Sign Up", size =(17, 1), font=40, justification='c')],
@@ -37,7 +34,7 @@ def create_account():#Account creation, broken down into the layout, and the fun
              [sg.Text("Re-Enter Password", size =(17, 1), font=16), sg.InputText(key='-rpassword-', font=16, password_char='*')],
              [sg.Button("Back"),  sg.Text("                                                                                                                                                  "), sg.Button("Submit")]]
 
-    window = sg.Window("Sign Up", layout)
+    window = sg.Window("Sign Up", layout, resizable=True)
 
     #while the program is running check to see if the window has been closed
     while True:
@@ -91,7 +88,7 @@ def login():
              [sg.Button("Back"),  sg.Text("                                                                                                               "), sg.Button("Submit")]]
 
 
-    window = sg.Window("Log In", layout)
+    window = sg.Window("Log In", layout, resizable=True)
 
     while True:
         event,values = window.read()
@@ -112,7 +109,6 @@ def login():
 
 
     window.close()
-
 
 def forgottenpassword():
     sg.theme("Bluemono")
@@ -154,9 +150,6 @@ def checkemail(supplied_email):
         elif total == 0:
             sg.popup("That email does not have an account in the system, create an account instead!")
 
-
-
-
 def checklogin(supplied_username, supplied_password):
     with open('Logincredentials.txt', 'r') as file:
         for line in file:
@@ -168,7 +161,6 @@ def checklogin(supplied_username, supplied_password):
             sg.popup("Incorrect login, please try again")
             login()
 
-
 def mainpage():
     sg.theme("Bluemono")
     layout = [[sg.Text("    Welcome to my Virtual Assistant", size =(30, 1), font=40)],
@@ -176,7 +168,7 @@ def mainpage():
             [sg.Text("", size =(30, 1), font=40)],
             [sg.Button("Sign Up", size =(30, 1), font=40)]]
 
-    window = sg.Window("Virtual Assistant", layout)
+    window = sg.Window("Virtual Assistant", layout, resizable=True)
 
     while True:
         event,values = window.read()
@@ -192,8 +184,6 @@ def mainpage():
 
     window.close()
 
-
-
 def OTP(inputted_email):
     otp = random.randint(100000,999999)
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
@@ -205,23 +195,22 @@ def OTP(inputted_email):
 
         subject = 'One Time Password'
         body = ('Your one time password is '+ str(otp))
+        footer = ('This is an incredible virtual assistant created by Joe, the virtual assistant probably doesnt work very well. \n If this email is not for you please just ignore it. \n Thankyou very much,\n Joe')
 
-        msg = f'Subject: {subject}\n\n{body}'
+        msg = f'Subject: {subject}\n\n{body}\n\n{footer}'
 
         smtp.sendmail('joesvirtualassistant@gmail.com', inputted_email, msg)
     OTPscreen(inputted_email,otp)
 
-
-
 def OTPscreen(inputted_email,otp):
     sg.theme('Bluemono')
-    layout = [[sg.Text("Change Password", size =(17, 1), font=40, justification='c')],
-             [sg.Text("One Time Password", size =(17, 1), font=16), sg.InputText(key='-otp-', font=16)],
-             [sg.Text("New Password", size =(17, 1), font=16), sg.InputText(key='-password-', font=16, password_char='*')],
-             [sg.Text("Re-Enter New Password", size =(17, 1), font=16), sg.InputText(key='-rpassword-', font=16, password_char='*')],
+    layout = [[sg.Text("Change Password, check junk email!", size =(35, 1), font=40, justification='c')],
+             [sg.Text("One Time Password", size =(20, 1), font=16), sg.InputText(key='-otp-', font=16)],
+             [sg.Text("New Password", size =(20, 1), font=16), sg.InputText(key='-password-', font=16, password_char='*')],
+             [sg.Text("Re-Enter New Password", size =(20, 1), font=16), sg.InputText(key='-rpassword-', font=16, password_char='*')],
              [sg.Button("Back"),  sg.Text("                                                                                                                                                  "), sg.Button("Submit")]]
 
-    window = sg.Window("Change Password", layout)
+    window = sg.Window("Change Password", layout, resizable=True)
 
     
     while True:
@@ -272,7 +261,7 @@ def inputchoice():
             [sg.Text("", size =(30, 1), font=40)],
             [sg.Button("Text", size =(30, 1), font=40)]]
 
-    window = sg.Window("Virtual Assistant", layout)
+    window = sg.Window("Virtual Assistant", layout, resizable=True)
 
     while True:
         event,values = window.read()
@@ -287,6 +276,5 @@ def inputchoice():
                 text.main()
 
     window.close()
-
 
 mainpage()

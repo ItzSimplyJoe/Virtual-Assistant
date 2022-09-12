@@ -34,7 +34,7 @@ class Text:
             ]
             ]
 
-        window = sg.Window("Virtual Asisstant", layout)
+        window = sg.Window("Virtual Asisstant", layout, resizable=True)
         while True:
             event, values = window.read()
             if event == "Exit" or event == sg.WIN_CLOSED:
