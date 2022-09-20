@@ -40,7 +40,7 @@ class Maths:
     def splittext(self,text):
         numbers = []
         lower = text.lower()
-        split = text.split()
+        split = lower.split()
         for word in split:
             if word.isdigit():
                 numbers.append(word)

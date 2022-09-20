@@ -7,6 +7,7 @@ from assistant_functions.translate import translate
 from assistant_functions.music import music
 from assistant_functions.words import words
 from assistant_functions.jokes import jokes
+from assistant_functions.light import light
 
 
 class Assistant:
@@ -29,13 +30,15 @@ class Assistant:
             'translate' : translate.main,
             'words' : words.main,
             'music' : music.main,
-            'jokes' : jokes.main
+            'jokes' : jokes.main,
+            'light' : light.main
             }
 
         try:
             reply_func = replies[intent]
 
             if callable(reply_func):
+                print(text)
                 reply_func(text, intent)
         except KeyError:
             speak_listen.say("Sorry, I didn't understand")

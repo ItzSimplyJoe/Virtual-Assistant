@@ -25,6 +25,7 @@ class Text:
             ]
 
         rightside = [
+            [sg.Output(size=(50,10), key='-OUTPUT-')],
             [sg.Text("How can i help?", size =(13, 1), font=bodyfonts),sg.InputText(key='-input-', size = (40,1), do_not_clear=False), sg.Button("Submit")],
             ]
 
@@ -38,11 +39,12 @@ class Text:
         while True:
             event, values = window.read()
             if event == "Exit" or event == sg.WIN_CLOSED:
-                break
+                quit()
             if event == "Submit":
                 input = values['-input-']
                 print(input)
-                assistant.reply(input)
+                stufftooutput = assistant.reply(input)
+                window['-OUTPUT-'].update(stufftooutput)
             else:
                 continue
 

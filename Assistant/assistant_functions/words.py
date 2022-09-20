@@ -1,7 +1,8 @@
 from assistant_functions.speak_listen import speak_listen
 from assistant_functions.determine_most_similar import determine_most_similar_phrase
-from pydictionary import Dictionary
 import random
+from pydictionary import Dictionary
+
 class words:
     def main(self, text, intent):
         samples = {
