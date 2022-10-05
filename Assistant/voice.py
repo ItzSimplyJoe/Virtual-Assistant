@@ -38,7 +38,7 @@ class Voice:
             ]
             ]
 
-        sg.Window("Virtual Asisstant", layout)
+        sg.Window("Virtual Asisstant", layout, resizable=True)
 
         self.porcupine = None
         pa = None

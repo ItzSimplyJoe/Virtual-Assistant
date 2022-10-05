@@ -11,6 +11,7 @@ from main import *
 from text import *
 from voice import *
 
+
 def progress_bar(): ## A pointless progress bar for aethestics, works by increasing the amount completed by 1 each time the function loops
     sg.theme('BlueMono')
     layout = [[sg.Text('Creating your account...')],
@@ -46,28 +47,33 @@ def create_account():#Account creation, broken down into the layout, and the fun
             if event == "Submit": #if the button submit is pressed, it takes the values of the email, username and password boxes and checks if the two password boxes match
                 email = values['-email-']
                 username = values['-username-']
-                if values['-password-'] != values['-rpassword-']:
-                    sg.popup("Error! Passwords do not match!", font=16)
-                    continue
-                elif values['-password-'] == values['-rpassword-']: ## if they match, it adds all of the credentials to the logincredentials.txt
-                    password = values['-password-']
-                    with open('logincredentials.txt', 'r') as file:
-                        for line in file:
-                            email1,username1,password1 = line.rstrip("\n").split(",")
-                            if email1 == email:
-                                sg.popup("Someone has already signed up with that email!")
-                                total = total + 1
-                                continue
-                            elif username1 == username:
-                                total = total + 1
-                                sg.popup("Someone has already signed up with that username!")
-                                continue
-                    if total > 0:
+                if values['-password-'] == "" or email == "" or username == "":
+                    sg.popup("Please fill in all of the boxes!", font=16)
+                else:
+                    if values['-password-'] != values['-rpassword-']:
+                        sg.popup("Error! Passwords do not match!", font=16)
                         continue
-                    elif total == 0:
-                        window.close()
-                        accountcreation(email,username,password)
-                        break                    
+                    elif values['-password-'] == values['-rpassword-']: ## if they match, it adds all of the credentials to the logincredentials.txt
+                        password = values['-password-']
+                        with open('logincredentials.txt', 'r') as file:
+                            for line in file:
+                                email1,username1,password1 = line.rstrip("\n").split(",")
+                                if email1 == email:
+                                    sg.popup("Someone has already signed up with that email!")
+                                    total = total + 1
+                                    continue
+                                elif username1 == username:
+                                    total = total + 1
+                                    sg.popup("Someone has already signed up with that username!")
+                                    continue
+                        if total > 0:
+                            continue
+                        elif total == 0:
+                            window.close()
+                            accountcreation(email,username,password)
+                            break
+                
+
             elif event == "Back":
                 window.close()
                 mainpage()
@@ -221,8 +227,8 @@ def OTPscreen(inputted_email,otp):
             if event == "Submit":
                 email = inputted_email
                 inputted_otp = values['-otp-']
-                inputted_otp = int(inputted_otp)
-                otp = int(otp)
+                inputted_otp = str(inputted_otp)
+                otp = str(otp)
                 finalList = []
                 if inputted_otp == otp:
                     if values['-password-'] != values['-rpassword-']:
@@ -276,5 +282,6 @@ def inputchoice():
                 text.main()
 
     window.close()
+
 
 mainpage()

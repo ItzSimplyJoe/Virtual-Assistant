@@ -16,7 +16,6 @@ class Text:
 
         leftside = [
             [sg.Text("            Virtual Assistant", size =(20, 1), font=titlefont)],
-            [sg.Image('assistant.png', size=(300,511))],
             [sg.Text(" ")],
             [sg.Text("Suggestions:", justification=CENTER, font = bodyfonts)],
             [sg.Text(random.choice(bulletpoints), justification=CENTER, font = bodyfonts)],
@@ -42,7 +41,6 @@ class Text:
                 quit()
             if event == "Submit":
                 input = values['-input-']
-                print(input)
                 stufftooutput = assistant.reply(input)
                 window['-OUTPUT-'].update(stufftooutput)
             else:

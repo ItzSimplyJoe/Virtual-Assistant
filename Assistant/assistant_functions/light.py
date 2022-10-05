@@ -14,6 +14,7 @@ class Light:
             'make my light blue' : {'func' : self.colour},
             r'make the light 30% brightness' : {'func' : self.brightness},
             'set the light to max brightness' : {'func' : self.brightness},
+            'make the light white' : {'func' : self.colour},
             'make the light rainbow' : {'func' : self.rainbow}
         }
         

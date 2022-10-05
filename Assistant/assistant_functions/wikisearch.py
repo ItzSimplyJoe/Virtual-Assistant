@@ -17,7 +17,6 @@ class wikisearch:
                 result = wikipedia.suggest(text)
                 #print(result)
                 speak_listen.say("Sorry, did you mean "+ result)
-                self.search(text)
             except:
                 #print("broken")
                 speak_listen.say("yeh you have broken everything!")

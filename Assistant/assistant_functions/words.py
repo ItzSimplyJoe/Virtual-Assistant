@@ -20,10 +20,7 @@ class words:
     def spell(self,text):
         spelling = []
         word = self.keywords(text)
-        for letter in word:
-            spelling.append(letter)
-        words = (spelling + word)
-        print (words)
+        words = list(word)
         speak_listen.say(words)
 
     def definition(self,text):

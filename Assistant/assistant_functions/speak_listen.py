@@ -14,6 +14,7 @@ class Speak_Listen:
     def say(self, text):
         self.speech_engine.say(text, "speech")
         self.speech_engine.runAndWait()
+        print(text)
         return(text)
 
     def stop_speaking(self, name, completed):
