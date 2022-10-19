@@ -12,7 +12,7 @@ print(query)
 
 
 
-driver = webdriver.Chrome(r'C:\Users\Joe\Downloads\chromedriver.exe')
+driver = webdriver.Chrome(r"C:\Users\Owner\Downloads\chromedriver_win32 (2)\chromedriver.exe")
 driver.get('https://www.google.com/search?q='+query)
 time.sleep(1.5)
 box = driver.find_element("xpath",'/html/body/div[3]/div[3]/span/div/div/div/div[3]/div[1]/button[2]/div').click()

@@ -9,7 +9,7 @@ class Text:
         self.name = name
         
     def main(self):
-        bulletpoints = ["-Oi Badger whats 14 x 34", "- Ask a maths question?", "- Ask how Badger is?", "- Why not ask about Alexa?", "- Insult Badger", "- Compliment Badger", "- Ask badger to play a song", "- Ask Badger to translate something into a different language", "- Ask Badger how to spell something", "Ask Badger what something means","- Just say hi"]
+        bulletpoints = ["Ask whats 124 x 125", "Ask a maths question?", "Ask how the virtual assistant is?", "Insult it", "Compliment it", "Ask it to play a song", "- Ask it to translate something into a different language", "Ask it how to spell something", "Ask it what something means","Just say hi"]
         titlefont = ("coolvetica compressed hv",35)
         bodyfonts = ("coolvetica rg",12)
 
@@ -24,7 +24,7 @@ class Text:
             ]
 
         rightside = [
-            [sg.Output(size=(50,10), key='-OUTPUT-')],
+            [sg.Output(size=(60,10), key='-OUTPUT-')],
             [sg.Text("How can i help?", size =(13, 1), font=bodyfonts),sg.InputText(key='-input-', size = (40,1), do_not_clear=False), sg.Button("Submit")],
             ]
 
@@ -41,9 +41,15 @@ class Text:
                 quit()
             if event == "Submit":
                 input = values['-input-']
-                stufftooutput = assistant.reply(input)
-                window['-OUTPUT-'].update(stufftooutput)
+                if input != "" or input != " ":
+                    print("You:")
+                    stufftooutput = assistant.reply(input)
+                    window['-OUTPUT-'].update(stufftooutput)
             else:
                 continue
+
+    def new (self,uuid):
+        print("WOW")
+
 
 text = Text("Badger")

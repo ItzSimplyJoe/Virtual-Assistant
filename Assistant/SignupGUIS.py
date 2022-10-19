@@ -10,6 +10,7 @@ import os
 from main import *
 from text import *
 from voice import *
+import string
 
 
 def progress_bar(): ## A pointless progress bar for aethestics, works by increasing the amount completed by 1 each time the function loops
@@ -57,7 +58,7 @@ def create_account():#Account creation, broken down into the layout, and the fun
                         password = values['-password-']
                         with open('logincredentials.txt', 'r') as file:
                             for line in file:
-                                email1,username1,password1 = line.rstrip("\n").split(",")
+                                email1,username1,password1,uuid = line.rstrip("\n").split(",")
                                 if email1 == email:
                                     sg.popup("Someone has already signed up with that email!")
                                     total = total + 1
@@ -81,17 +82,19 @@ def create_account():#Account creation, broken down into the layout, and the fun
 
 def accountcreation(email,username,password):
     file = open("logincredentials.txt", "a")
-    file.write ((email) + "," + (username) + "," + (password) + "\n")
+    uuid = ''.join(random.choice(string.ascii_letters) for i in range(20))
+    file.write ((email) + "," + (username) + "," + (password) + "," + (uuid) + "\n")
     file.close()
     progress_bar()
-    mainpage()
+    file = open(r"UserProfiles/"+ uuid + ".txt", "a")
+    inputchoicenew(uuid)
 
 def login():
     sg.theme("Bluemono")
-    layout = [[sg.Text("Log In", size =(15, 1), font=40), sg.Text("                                                                 "), sg.Button("Forgotten Password?")],
+    layout = [[sg.Text("Log In", size =(15, 1), font=40), sg.Text("                                                                                        "), sg.Button("Forgotten Password?")],
             [sg.Text("Username", size =(15, 1), font=16),sg.InputText(key='-username-', font=16)],
             [sg.Text("Password", size =(15, 1), font=16),sg.InputText(key='-password-', password_char='*', font=16)],
-             [sg.Button("Back"),  sg.Text("                                                                                                               "), sg.Button("Submit")]]
+             [sg.Button("Back"),  sg.Text("                                                                                                                                             "), sg.Button("Submit")]]
 
 
     window = sg.Window("Log In", layout, resizable=True)
@@ -147,7 +150,7 @@ def checkemail(supplied_email):
     total = 0
     with open('Logincredentials.txt', 'r') as file:
         for line in file:
-            email, username, password = line.rstrip("\n").split(",")
+            email, username, password, uuid = line.rstrip("\n").split(",")
             if email == supplied_email:
                 total = total + 1
         print(total)
@@ -159,7 +162,7 @@ def checkemail(supplied_email):
 def checklogin(supplied_username, supplied_password):
     with open('Logincredentials.txt', 'r') as file:
         for line in file:
-            email, username, password = line.rstrip("\n").split(",")
+            email, username, password,uuid = line.rstrip("\n").split(",")
             if username == supplied_username:
                 if password == supplied_password:
                     inputchoice()
@@ -271,7 +274,7 @@ def inputchoice():
 
     while True:
         event,values = window.read()
-        if event == "Cancel" or event == sg.WIN_CLOSED:
+        if event == sg.WIN_CLOSED:
             break
         else:
             if event == "Voice":
@@ -282,6 +285,28 @@ def inputchoice():
                 text.main()
 
     window.close()
+        
+def inputchoicenew(uuid):
+    sg.theme("Bluemono")
+    layout = [[sg.Text("    Would you like to use Voice or Text?", size =(30, 1), font=40)],
+            [sg.Button("Voice", size =(30, 1), font=40)],
+            [sg.Text("", size =(30, 1), font=40)],
+            [sg.Button("Text", size =(30, 1), font=40)]]
 
+    window = sg.Window("Virtual Assistant", layout, resizable=True)
+
+    while True:
+        event,values = window.read()
+        if event == sg.WIN_CLOSED:
+            break
+        else:
+            if event == "Voice":
+                window.close()
+                voice.new(uuid)
+            elif event == "Text":
+                window.close()
+                text.new(uuid)
+
+    window.close()
 
 mainpage()

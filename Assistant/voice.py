@@ -73,4 +73,8 @@ class Voice:
                 input=True,
                 frames_per_buffer=self.porcupine.frame_length)
 
+    def new(self,uuid):
+        print("WOw")
+
+
 voice = Voice("Badger")

@@ -2,10 +2,16 @@ import customtkinter
 import tkinter
 import smtplib
 import random
+from PIL import Image
+from PIL import ImageTk
 from email.message import EmailMessage
 from tkinter.font import BOLD
+from settings import *
+import random
+import os
 theme = "light"
 font = "helvetica"
+PATH = os.path.dirname(os.path.realpath(__file__))
 customtkinter.set_appearance_mode(theme)
 customtkinter.set_default_color_theme("blue")
 class Login(customtkinter.CTk):
@@ -70,7 +76,8 @@ class Login(customtkinter.CTk):
                 email, username, password = line.rstrip("\n").split(",")
                 if username == supplied_username and password == supplied_password:
                     total = 1
-                    print("Successful Login")
+                    app = App()
+                    app.mainloop()
             else:
                 if total == 0:
                     self.errormsg()
@@ -292,6 +299,84 @@ class ForgottenPassword(customtkinter.CTk):
         label = customtkinter.CTkLabel(window, text=textforerror)
         label.pack(side="top", fill="both", expand=True, padx=40, pady=40)
 
+class App(customtkinter.CTk):
+
+    WIDTH = 960
+    HEIGHT = 540
+
+    def __init__(self):
+        super().__init__()
+
+        self.title("CustomTkinter complex_example.py")
+        self.geometry(f"{App.WIDTH}x{App.HEIGHT}")
+        self.protocol("WM_DELETE_WINDOW", self.closing)
+
+################## Creating Left and Right ##################
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_rowconfigure(0, weight=1)
+
+        self.frame_left = customtkinter.CTkFrame(master=self,
+                                                 width=180,
+                                                 corner_radius=0)
+        self.frame_left.grid(row=0, column=0, sticky="nswe")
+
+        self.frame_right = customtkinter.CTkFrame(master=self)
+        self.frame_right.grid(row=0, column=1, sticky="nswe", padx=20, pady=20)
+
+################## Left ##################
+
+        self.frame_left.grid_rowconfigure(0, minsize=10)   # empty row with minsize as spacing
+        self.frame_left.grid_rowconfigure(5, weight=1)  # empty row as spacing
+        self.frame_left.grid_rowconfigure(8, minsize=20)    # empty row with minsize as spacing
+        self.frame_left.grid_rowconfigure(11, minsize=10)  # empty row with minsize as spacing
+        self.settings_image = self.load_image(r"\ImagesForUI\settings.png", 50)
+        self.logout_image = self.load_image(r"\ImagesForUI\logout.png", 50)
+        self.button = customtkinter.CTkButton(master=self.frame_left, image=self.logout_image, 
+                                                text="Logout", width=40, height=40,
+                                                command=self.logout)
+        self.button_1 = customtkinter.CTkButton(master=self.frame_left, image=self.settings_image, 
+                                                text="Settings", width=40, height=40,
+                                                command=self.settings)
+        self.button_1.grid(row=11, column=0, columnspan=1, padx=20, pady=10, sticky="w")
+################## Right ##################
+        self.frame_right.rowconfigure((0, 1, 2, 3), weight=1)
+        self.frame_right.rowconfigure(7, weight=10)
+        self.frame_right.columnconfigure((0, 1), weight=1)
+        self.frame_right.columnconfigure(2, weight=0)
+
+
+
+        self.entry = customtkinter.CTkEntry(master=self.frame_right,
+                                            width=120,
+                                            placeholder_text="Enter Question for Badger")
+        self.entry.grid(row=8, column=0, columnspan=2, pady=20, padx=20, sticky="we")
+
+        self.button_5 = customtkinter.CTkButton(master=self.frame_right,
+                                                text="Submit",
+                                                border_width=2,
+                                                fg_color=None,
+                                                command=self.input)
+        self.button_5.grid(row=8, column=2, columnspan=1, pady=20, padx=20, sticky="we")
+
+    def closing(self):
+        self.destroy()
+
+    def load_image(self, path, image_size):
+        return ImageTk.PhotoImage(Image.open(PATH + path).resize((image_size, image_size)))
+
+    def settings(self):
+        settings = Settings()
+        settings.mainloop()
+
+    def input(self):
+        text = self.entry.get()
+        print(text)
+
+    def logout(self):
+        self.destroy()
+        login = Login()
+        login.mainloop()
+        
 if __name__ == "__main__":
-    login = Login()
-    login.mainloop()
+    app = App()
+    app.mainloop()
