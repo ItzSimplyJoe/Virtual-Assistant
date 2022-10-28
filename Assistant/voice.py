@@ -1,5 +1,3 @@
-from tkinter import CENTER
-import PySimpleGUI as sg
 import pvporcupine
 import pyaudio
 import struct
@@ -12,34 +10,7 @@ class Voice:
     def __init__(self, name):
         self.name = name
         
-    def main(self):
-        bulletpoints = ["-Oi Badger whats 14 x 34", "- Ask a maths question?", "- Ask how Badger is?", "- Why not ask about Alexa?", "- Insult Badger", "- Compliment Badger", "- Ask badger to play a song", "- Ask Badger to translate something into a different language", "- Ask Badger how to spell something", "Ask Badger what something means","- Just say hi"]
-        titlefont = ("coolvetica compressed hv",35)
-        bodyfonts = ("coolvetica rg",12)
-
-
-        leftside = [
-            [sg.Text("            Virtual Assistant", size =(20, 1), font=titlefont)],
-            [sg.Image('assistant.png', size=(300,511))],
-            [sg.Text(" ")],
-            [sg.Text("Suggestions:", justification=CENTER, font = bodyfonts)],
-            [sg.Text(random.choice(bulletpoints), justification=CENTER, font = bodyfonts)],
-            [sg.Text(random.choice(bulletpoints), justification=CENTER, font = bodyfonts)],  
-            [sg.Text(random.choice(bulletpoints), justification=CENTER, font = bodyfonts)],
-            ]
-
-        rightside = [
-            [sg.Text("How can i help?", size =(13, 1), font=bodyfonts),sg.InputText(key='-input-', size = (40,1), do_not_clear=False), sg.Button("Submit")],
-            ]
-
-        layout = [
-            [sg.Column(leftside),
-            sg.Column(rightside),
-            ]
-            ]
-
-        sg.Window("Virtual Asisstant", layout, resizable=True)
-
+    def main(self,uuid):
         self.porcupine = None
         pa = None
         audio_stream = None
@@ -64,7 +35,7 @@ class Voice:
                     if audio_stream is not None:
                         audio_stream.close()
                     said = speak_listen.listen()
-                    assistant.reply(said)
+                    assistant.reply(said,uuid)
             except:
                 audio_stream = pa.open(
                 rate=self.porcupine.sample_rate,
@@ -73,8 +44,6 @@ class Voice:
                 input=True,
                 frames_per_buffer=self.porcupine.frame_length)
 
-    def new(self,uuid):
-        print("WOw")
 
 
 voice = Voice("Badger")

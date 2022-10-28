@@ -8,7 +8,7 @@ class Text:
     def __init__(self, name):
         self.name = name
         
-    def main(self):
+    def main(self,uuid):
         bulletpoints = ["Ask whats 124 x 125", "Ask a maths question?", "Ask how the virtual assistant is?", "Insult it", "Compliment it", "Ask it to play a song", "- Ask it to translate something into a different language", "Ask it how to spell something", "Ask it what something means","Just say hi"]
         titlefont = ("coolvetica compressed hv",35)
         bodyfonts = ("coolvetica rg",12)
@@ -43,13 +43,9 @@ class Text:
                 input = values['-input-']
                 if input != "" or input != " ":
                     print("You:")
-                    stufftooutput = assistant.reply(input)
+                    stufftooutput = assistant.reply(input,uuid)
                     window['-OUTPUT-'].update(stufftooutput)
             else:
                 continue
-
-    def new (self,uuid):
-        print("WOW")
-
 
 text = Text("Badger")

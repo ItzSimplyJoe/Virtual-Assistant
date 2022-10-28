@@ -11,6 +11,8 @@ from main import *
 from text import *
 from voice import *
 import string
+from cryptography.fernet import Fernet
+
 
 
 def progress_bar(): ## A pointless progress bar for aethestics, works by increasing the amount completed by 1 each time the function loops
@@ -58,6 +60,11 @@ def create_account():#Account creation, broken down into the layout, and the fun
                         password = values['-password-']
                         with open('logincredentials.txt', 'r') as file:
                             for line in file:
+                                if "b'" in line:
+                                    line = line.replace("b'", "")
+                                    line = line.replace("'","")
+                                text = line.encode()
+                                line = decrpyt(text)
                                 email1,username1,password1,uuid = line.rstrip("\n").split(",")
                                 if email1 == email:
                                     sg.popup("Someone has already signed up with that email!")
@@ -83,11 +90,13 @@ def create_account():#Account creation, broken down into the layout, and the fun
 def accountcreation(email,username,password):
     file = open("logincredentials.txt", "a")
     uuid = ''.join(random.choice(string.ascii_letters) for i in range(20))
-    file.write ((email) + "," + (username) + "," + (password) + "," + (uuid) + "\n")
+    text = ((email) + "," + (username) + "," + (password) + "," + (uuid) + "\n")
+    text = encrypt(text)
+    file.write(str(text))
     file.close()
     progress_bar()
-    file = open(r"UserProfiles/"+ uuid + ".txt", "a")
-    inputchoicenew(uuid)
+    file = open(r"UserProfiles/"+ uuid + ".csv", "a")
+    inputchoice()
 
 def login():
     sg.theme("Bluemono")
@@ -150,6 +159,11 @@ def checkemail(supplied_email):
     total = 0
     with open('Logincredentials.txt', 'r') as file:
         for line in file:
+            if "b'" in line:
+                line = line.replace("b'", "")
+                line = line.replace("'","")
+            text = line.encode()
+            line = decrpyt(text)
             email, username, password, uuid = line.rstrip("\n").split(",")
             if email == supplied_email:
                 total = total + 1
@@ -162,10 +176,15 @@ def checkemail(supplied_email):
 def checklogin(supplied_username, supplied_password):
     with open('Logincredentials.txt', 'r') as file:
         for line in file:
+            if "b'" in line:
+                line = line.replace("b'", "")
+                line = line.replace("'","")
+            text = line.encode()
+            line = decrpyt(text)
             email, username, password,uuid = line.rstrip("\n").split(",")
             if username == supplied_username:
                 if password == supplied_password:
-                    inputchoice()
+                    inputchoice(uuid)
         else:
             sg.popup("Incorrect login, please try again")
             login()
@@ -239,6 +258,8 @@ def OTPscreen(inputted_email,otp):
                         continue
                     elif values['-password-'] == values['-rpassword-']:
                         password = values['-password-']
+                        password = encrypt(password)
+                        password = str(password)
                         with open("logincredentials.txt",'r') as file:
                             for line in file:
                                 if line[-1] == "\n":
@@ -263,7 +284,7 @@ def OTPscreen(inputted_email,otp):
                 mainpage()
     window.close()
 
-def inputchoice():
+def inputchoice(uuid):
     sg.theme("Bluemono")
     layout = [[sg.Text("    Would you like to use Voice or Text?", size =(30, 1), font=40)],
             [sg.Button("Voice", size =(30, 1), font=40)],
@@ -279,34 +300,25 @@ def inputchoice():
         else:
             if event == "Voice":
                 window.close()
-                voice.main()
+                voice.main(uuid)
             elif event == "Text":
                 window.close()
-                text.main()
+                text.main(uuid)
 
     window.close()
-        
-def inputchoicenew(uuid):
-    sg.theme("Bluemono")
-    layout = [[sg.Text("    Would you like to use Voice or Text?", size =(30, 1), font=40)],
-            [sg.Button("Voice", size =(30, 1), font=40)],
-            [sg.Text("", size =(30, 1), font=40)],
-            [sg.Button("Text", size =(30, 1), font=40)]]
 
-    window = sg.Window("Virtual Assistant", layout, resizable=True)
+def encrypt(text):
+    message = text
+    key = b'j5CqBXeLXLEjvHBJm6_RIigxtxx0pjdMZc3d7u65aFY='
+    fernet = Fernet(key)
+    encMessage = fernet.encrypt(message.encode())
+    return encMessage
 
-    while True:
-        event,values = window.read()
-        if event == sg.WIN_CLOSED:
-            break
-        else:
-            if event == "Voice":
-                window.close()
-                voice.new(uuid)
-            elif event == "Text":
-                window.close()
-                text.new(uuid)
-
-    window.close()
+def decrpyt(text):
+    message = text
+    key = b'j5CqBXeLXLEjvHBJm6_RIigxtxx0pjdMZc3d7u65aFY='
+    fernet = Fernet(key)
+    decMessage = fernet.decrypt(message).decode()
+    return decMessage
 
 mainpage()

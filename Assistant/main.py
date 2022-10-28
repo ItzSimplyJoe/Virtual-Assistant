@@ -8,6 +8,7 @@ from assistant_functions.music import music
 from assistant_functions.words import words
 from assistant_functions.jokes import jokes
 from assistant_functions.light import light
+from assistant_functions.createprofile import profile
 
 
 class Assistant:
@@ -16,7 +17,7 @@ class Assistant:
         self.name = name
         
     
-    def reply(self, text):
+    def reply(self, text,uuid):
         intent = intentclassifier.predict(text)
 
         replies = {
@@ -31,7 +32,8 @@ class Assistant:
             'words' : words.main,
             'music' : music.main,
             'jokes' : jokes.main,
-            'light' : light.main
+            'light' : light.main,
+            'profile' : profile.main
             }
 
         try:
@@ -39,6 +41,9 @@ class Assistant:
 
             if callable(reply_func):
                 print(text)
+                print("Badger:")
+                if reply_func == profile.main:
+                    profile.main(text,intent,uuid)
                 reply_func(text, intent)
         except KeyError:
             speak_listen.say("Sorry, I didn't understand")
