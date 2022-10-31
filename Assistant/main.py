@@ -17,7 +17,7 @@ class Assistant:
         self.name = name
         
     
-    def reply(self, text,uuid):
+    def reply(self, text,uuid,choice):
         intent = intentclassifier.predict(text)
 
         replies = {
@@ -43,7 +43,7 @@ class Assistant:
                 print(text)
                 print("Badger:")
                 if reply_func == profile.main:
-                    profile.main(text,intent,uuid)
+                    profile.main(text,intent,uuid,choice)
                 elif reply_func == reply:
                     reply(text,intent,uuid)
                 reply_func(text, intent)

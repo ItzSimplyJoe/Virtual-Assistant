@@ -305,10 +305,10 @@ def inputchoice(uuid):
         else:
             if event == "Voice":
                 window.close()
-                voice.main(uuid)
+                voice.main(uuid,"voice")
             elif event == "Text":
                 window.close()
-                text.main(uuid)
+                text.main(uuid,"text")
 
     window.close()
 
