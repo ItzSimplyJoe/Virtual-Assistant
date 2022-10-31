@@ -6,7 +6,6 @@ import time
 class profile:
     def main(self,text,intent,uuid):
         speak_listen.say("Would you like to set up a personal profile?")
-        time.sleep(2)
         said = speak_listen.listen()
         samples = {
         'sure' : {'func' : self.createprofile},

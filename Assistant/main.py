@@ -44,6 +44,8 @@ class Assistant:
                 print("Badger:")
                 if reply_func == profile.main:
                     profile.main(text,intent,uuid)
+                elif reply_func == reply:
+                    reply(text,intent,uuid)
                 reply_func(text, intent)
         except KeyError:
             speak_listen.say("Sorry, I didn't understand")

@@ -58,22 +58,26 @@ def create_account():#Account creation, broken down into the layout, and the fun
                         continue
                     elif values['-password-'] == values['-rpassword-']: ## if they match, it adds all of the credentials to the logincredentials.txt
                         password = values['-password-']
-                        with open('logincredentials.txt', 'r') as file:
-                            for line in file:
-                                if "b'" in line:
-                                    line = line.replace("b'", "")
-                                    line = line.replace("'","")
-                                text = line.encode()
-                                line = decrpyt(text)
-                                email1,username1,password1,uuid = line.rstrip("\n").split(",")
-                                if email1 == email:
-                                    sg.popup("Someone has already signed up with that email!")
-                                    total = total + 1
-                                    continue
-                                elif username1 == username:
-                                    total = total + 1
-                                    sg.popup("Someone has already signed up with that username!")
-                                    continue
+                        if len(password) < 7:
+                            sg.popup("Error Password must be at least 8 characters long")
+                            create_account()
+                        elif len(password) > 8:
+                            with open('logincredentials.txt', 'r') as file:
+                                for line in file:
+                                    if "b'" in line:
+                                        line = line.replace("b'", "")
+                                        line = line.replace("'","")
+                                    text = line.encode()
+                                    line = decrpyt(text)
+                                    email1,username1,password1,uuid = line.rstrip("\n").split(",")
+                                    if email1 == email:
+                                        sg.popup("Someone has already signed up with that email!")
+                                        total = total + 1
+                                        continue
+                                    elif username1 == username:
+                                        total = total + 1
+                                        sg.popup("Someone has already signed up with that username!")
+                                        continue
                         if total > 0:
                             continue
                         elif total == 0:
@@ -90,12 +94,13 @@ def create_account():#Account creation, broken down into the layout, and the fun
 def accountcreation(email,username,password):
     file = open("logincredentials.txt", "a")
     uuid = ''.join(random.choice(string.ascii_letters) for i in range(20))
-    text = ((email) + "," + (username) + "," + (password) + "," + (uuid) + "\n")
+    text = ((email) + "," + (username) + "," + (password) + "," + (uuid))
     text = encrypt(text)
-    file.write(str(text))
+    file.write(str(text) + "\n")
     file.close()
     progress_bar()
     file = open(r"UserProfiles/"+ uuid + ".csv", "a")
+    file.write("None","None","None")
     inputchoice()
 
 def login():
