@@ -13,8 +13,6 @@ from voice import *
 import string
 from cryptography.fernet import Fernet
 
-
-
 def progress_bar(): ## A pointless progress bar for aethestics, works by increasing the amount completed by 1 each time the function loops
     sg.theme('BlueMono')
     layout = [[sg.Text('Creating your account...')],
@@ -99,8 +97,6 @@ def accountcreation(email,username,password):
     file.write(str(text) + "\n")
     file.close()
     progress_bar()
-    file = open(r"UserProfiles/"+ uuid + ".csv", "a")
-    file.write("None","None","None")
     inputchoice()
 
 def login():
@@ -195,7 +191,7 @@ def checklogin(supplied_username, supplied_password):
             login()
 
 def mainpage():
-    sg.theme("Bluemono")
+    sg.theme("BlueMono")
     layout = [[sg.Text("    Welcome to my Virtual Assistant", size =(30, 1), font=40)],
             [sg.Button("Log In", size =(30, 1), font=40)],
             [sg.Text("", size =(30, 1), font=40)],
@@ -326,4 +322,4 @@ def decrpyt(text):
     decMessage = fernet.decrypt(message).decode()
     return decMessage
 
-mainpage()
+login()

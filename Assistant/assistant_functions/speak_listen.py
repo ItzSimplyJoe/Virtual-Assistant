@@ -12,10 +12,10 @@ class Speak_Listen:
         self.mic = sr.Microphone()
 
     def say(self, text):
-        self.speech_engine.say(text, "speech")
-        self.speech_engine.runAndWait()
         print("Badger:")
         print(text)
+        self.speech_engine.say(text, "speech")
+        self.speech_engine.runAndWait()
         return(text)
 
     def stop_speaking(self, name, completed):
