@@ -14,7 +14,7 @@ import string
 from cryptography.fernet import Fernet
 
 def progress_bar(): ## A pointless progress bar for aethestics, works by increasing the amount completed by 1 each time the function loops
-    sg.theme('BlueMono')
+    #sg.theme('BlueMono')
     layout = [[sg.Text('Creating your account...')],
             [sg.ProgressBar(1000, orientation='h', size=(20, 20), key='progbar')],
             [sg.Cancel()]]
@@ -28,7 +28,7 @@ def progress_bar(): ## A pointless progress bar for aethestics, works by increas
     window.close()
 
 def create_account():#Account creation, broken down into the layout, and the functionality
-    sg.theme('Bluemono')
+    #sg.theme('Bluemono')
     layout = [[sg.Text("Sign Up", size =(17, 1), font=40, justification='c')],
              [sg.Text("E-mail", size =(17, 1),font=16), sg.InputText(key='-email-', font=16)],
              [sg.Text("Create Username", size =(17, 1), font=16), sg.InputText(key='-username-', font=16)],
@@ -100,7 +100,7 @@ def accountcreation(email,username,password):
     inputchoice()
 
 def login():
-    sg.theme("Bluemono")
+    #sg.theme("Bluemono")
     layout = [[sg.Text("Log In", size =(15, 1), font=40), sg.Text("                                                                                        "), sg.Button("Forgotten Password?")],
             [sg.Text("Username", size =(15, 1), font=16),sg.InputText(key='-username-', font=16)],
             [sg.Text("Password", size =(15, 1), font=16),sg.InputText(key='-password-', password_char='*', font=16)],
@@ -130,7 +130,7 @@ def login():
     window.close()
 
 def forgottenpassword():
-    sg.theme("Bluemono")
+    #sg.theme("Bluemono")
     fontsmall = ("Arial",11)
     fontbig = ("Arial",40)
     layout = [[sg.Text("Forgotten your password? ", size =(65, 1), font=40, justification=CENTER)],
@@ -191,7 +191,7 @@ def checklogin(supplied_username, supplied_password):
             login()
 
 def mainpage():
-    sg.theme("BlueMono")
+    #sg.theme("BlueMono")
     layout = [[sg.Text("    Welcome to my Virtual Assistant", size =(30, 1), font=40)],
             [sg.Button("Log In", size =(30, 1), font=40)],
             [sg.Text("", size =(30, 1), font=40)],
@@ -232,7 +232,7 @@ def OTP(inputted_email):
     OTPscreen(inputted_email,otp)
 
 def OTPscreen(inputted_email,otp):
-    sg.theme('Bluemono')
+    #sg.theme('Bluemono')
     layout = [[sg.Text("Change Password, check junk email!", size =(35, 1), font=40, justification='c')],
              [sg.Text("One Time Password", size =(20, 1), font=16), sg.InputText(key='-otp-', font=16)],
              [sg.Text("New Password", size =(20, 1), font=16), sg.InputText(key='-password-', font=16, password_char='*')],
@@ -286,7 +286,7 @@ def OTPscreen(inputted_email,otp):
     window.close()
 
 def inputchoice(uuid):
-    sg.theme("Bluemono")
+    #sg.theme("Bluemono")
     layout = [[sg.Text("    Would you like to use Voice or Text?", size =(30, 1), font=40)],
             [sg.Button("Voice", size =(30, 1), font=40)],
             [sg.Text("", size =(30, 1), font=40)],

@@ -17,7 +17,7 @@ class Assistant:
         self.name = name
         
     
-    def reply(self, text,uuid,choice):
+    def reply(self,text,uuid,choice):
         intent = intentclassifier.predict(text)
 
         replies = {

@@ -148,6 +148,7 @@ class Profile:
     def check(self,uuid,choice):
         try:
             file = open(f"UserProfiles/{uuid}.csv")
+            file.close()
             total = 0
         except:
             total = 1
@@ -178,5 +179,5 @@ class Profile:
 
 profile = Profile()
         
-profile.main("create profile","Intent","cYGjyYwAJNBJjiuImnCh","text")
+#profile.main("create profile","Intent","cYGjyYwAJNBJjiuImnCh","text")
         

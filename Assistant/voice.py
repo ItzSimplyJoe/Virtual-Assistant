@@ -10,7 +10,7 @@ class Voice:
     def __init__(self, name):
         self.name = name
         
-    def main(self,uuid):
+    def main(self,uuid,choice):
         self.porcupine = None
         pa = None
         audio_stream = None
@@ -35,7 +35,7 @@ class Voice:
                     if audio_stream is not None:
                         audio_stream.close()
                     said = speak_listen.listen()
-                    assistant.reply(said,uuid)
+                    assistant.reply(said,uuid,choice)
             except:
                 audio_stream = pa.open(
                 rate=self.porcupine.sample_rate,
