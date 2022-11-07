@@ -41,15 +41,13 @@ class Assistant:
 
             if callable(reply_func):
                 print(text)
-                print("Badger:")
                 if reply_func == profile.main:
                     profile.main(text,intent,uuid,choice)
-                elif reply_func == reply:
-                    reply(text,intent,uuid)
                 reply_func(text, intent)
         except KeyError:
             speak_listen.say("Sorry, I didn't understand")
         except Exception as e:
+            print("There has been an error, you can keep on using the program just please report this to Joe :D")
             print("Error: " + str(e))
     
  

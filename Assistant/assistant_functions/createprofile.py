@@ -22,6 +22,9 @@ class Profile:
                 else:
                     if event == "Submit":
                         said = values["-choice-"]
+                        if said == "None":
+                            window.close()
+                            self.main(text,intent,uuid,choice)
                         window.close()
         samples = {
         'sure' : {'func' : self.createprofile},
@@ -75,27 +78,27 @@ class Profile:
                         window.close()
         if age == "stop" or age == "Stop":
             self.exit()
-        speak_listen.say("And finally, Where are you from?")
+        speak_listen.say("And finally, what is your prefered language?")
         if choice == "voice":
-            country = speak_listen.listen()
+            language = speak_listen.listen()
         elif choice == "text":
-            layout = [[sg.Text("What country are you from?", size =(25, 1), font=40)],
-            [sg.InputText(key='-country-', font=16),sg.Button("Submit")]]
-            window = sg.Window("Country", layout, resizable=False)
+            layout = [[sg.Text("What is your prefered language?", size =(25, 1), font=40)],
+            [sg.InputText(key='-language-', font=16),sg.Button("Submit")]]
+            window = sg.Window("Language", layout, resizable=False)
             while True:
                 event,values = window.read()
                 if event == sg.WIN_CLOSED:
                     break
                 else:
                     if event == "Submit":
-                        country = values["-country-"]
+                        language = values["-language-"]
                         window.close()
-        if country == "stop" or country == "Stop":
+        if language == "stop" or language == "Stop":
             self.exit()
         speak_listen.say("Ok")
         speak_listen.say("Your name is " + name)
         speak_listen.say("You are " + age + " years old")
-        speak_listen.say("And you are from " + country)
+        speak_listen.say("And you speak " + language)
         speak_listen.say("Is this all correct?")
         if choice == "voice":
             name = speak_listen.listen()
@@ -131,11 +134,11 @@ class Profile:
             speak_listen.say("Ok, my bad lets try this again")
             func(uuid,choice)
         elif func == self.save:
-            func(name,age,country,uuid,choice)
+            func(name,age,language,uuid,choice)
 
-    def save(self,name,age,country,uuid,choice):
+    def save(self,name,age,language,uuid,choice):
         file = open(f"UserProfiles/{uuid}"+".csv", "a")
-        file.write(f"{name},{age},{country}")
+        file.write(f"{name},{age},{language},{language}")
         file.flush()
         file.close()
 

@@ -220,4 +220,6 @@ Tell me a very funny joke,jokes
 create me a personal profile,profile
 remember my name,profile
 create profile,profile
-who was in paris,wikisearch
+who was in paris,wikisearch
+can you remember my name,profile
+can i create a profile,profile

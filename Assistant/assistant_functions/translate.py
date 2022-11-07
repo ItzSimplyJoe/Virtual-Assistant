@@ -25,6 +25,8 @@ class translate:
             text.replace("what's",'')
         if 'what language is' in text:
             text.replace('what language is','')
+        if 'into' in text:
+            text.replace('into','')
         return text            
 
     def langdetect(self,text):
@@ -58,6 +60,9 @@ class translate:
         if 'english' in text:
             lang = 'en'
             text.replace('english', '')
+        if 'japanese' in text:
+            lang = 'jp'
+            text.replace('japanese', '')
         return lang , text
 
 

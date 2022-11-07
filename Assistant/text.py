@@ -9,7 +9,7 @@ class Text:
         self.name = name
         
     def main(self,uuid,choice):
-        bulletpoints = ["Ask whats 124 x 125", "Ask a maths question?", "Ask how the virtual assistant is?", "Insult it", "Compliment it", "Ask it to play a song", "- Ask it to translate something into a different language", "Ask it how to spell something", "Ask it what something means","Just say hi"]
+        bulletpoints = ["Ask whats 124 x 125", "Ask a maths question?", "Ask how the virtual assistant is?", "Insult it", "Compliment it", "Ask it to play a song", "Ask it to translate something into a different language", "Ask it how to spell something", "Ask it what something means","Just say hi"]
         titlefont = ("coolvetica compressed hv",35)
         bodyfonts = ("coolvetica rg",12)
 

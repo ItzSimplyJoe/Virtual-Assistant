@@ -97,7 +97,7 @@ def accountcreation(email,username,password):
     file.write(str(text) + "\n")
     file.close()
     progress_bar()
-    inputchoice()
+    inputchoice(uuid)
 
 def login():
     #sg.theme("Bluemono")
@@ -322,4 +322,4 @@ def decrpyt(text):
     decMessage = fernet.decrypt(message).decode()
     return decMessage
 
-login()
+mainpage()

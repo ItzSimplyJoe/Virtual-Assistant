@@ -3,7 +3,7 @@ from assistant_functions.determine_most_similar import determine_most_similar_ph
 from assistant_functions.speak_listen import speak_listen
 import random
 
-def reply(text, intent,uuid):
+def reply(text, intent):
     with open(f'samples/{intent}.json') as samplesfile:  
         samples = json.load(samplesfile)
 
