@@ -138,7 +138,7 @@ class Profile:
 
     def save(self,name,age,language,uuid,choice):
         file = open(f"UserProfiles/{uuid}"+".csv", "a")
-        file.write(f"{name},{age},{language},{language}")
+        file.write(f"{name},{age},{language}")
         file.flush()
         file.close()
 
