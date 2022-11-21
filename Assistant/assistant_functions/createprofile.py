@@ -181,6 +181,4 @@ class Profile:
                                 continue
 
 profile = Profile()
-        
-#profile.main("create profile","Intent","cYGjyYwAJNBJjiuImnCh","text")
-        
+            
