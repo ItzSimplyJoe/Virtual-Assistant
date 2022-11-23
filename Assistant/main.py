@@ -9,6 +9,7 @@ from assistant_functions.words import words
 from assistant_functions.jokes import jokes
 from assistant_functions.light import light
 from assistant_functions.createprofile import profile
+from assistant_functions.timer import timer
 
 
 class Assistant:
@@ -33,7 +34,8 @@ class Assistant:
             'music' : music.main,
             'jokes' : jokes.main,
             'light' : light.main,
-            'profile' : profile.main
+            'profile' : profile.main,
+            'timer' : timer.main
             }
 
         try:

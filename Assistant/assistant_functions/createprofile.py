@@ -145,8 +145,6 @@ class Profile:
     def exit(self,uuid,choice):
         speak_listen.say("Exiting personal profile creation")
         exit()
-        
-
 
     def check(self,uuid,choice):
         try:
