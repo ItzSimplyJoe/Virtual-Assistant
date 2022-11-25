@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 from time import sleep
 
 class Timer:
-    def main(self, text, intent):
+    def main(self, text, intent, choice):
         samples = {
             'create a 10 minute timer' : {'func' : self.timerset},
             'start a 30 second timer' : {'func' : self.timerset},
