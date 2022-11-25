@@ -4,7 +4,33 @@ from serpapi import GoogleSearch
 
 
 class wikisearch:
-    def main(self,text,intent):
+    def main(self, text, intent):
+        samples = {
+            'translate hello into french' : {'func' : self.translation},
+            'whats the population of china' : {'func' : self.websearch},
+            'how long is king charles' : {'func' : self.websearch},
+            'when did dianna die' : {'func' : self.websearch}
+        }
+        
+        most_similar = determine_most_similar_phrase(text, samples)
+        func = samples[most_similar]['func']
+        func(text)
+
+    def translation(self,text,intent):
+        params = {
+        "q": text,
+        "hl": "en",
+        "gl": "uk",
+        "api_key": "66389e9d77c7a748284122ebe6862574e12d62c7ec9b1b37774c279adebc5a77"
+        }
+        search = GoogleSearch(params)
+        results = search.get_dict()
+        try:
+            transresult = result["answer_box"]
+            print(transresult)
+
+    
+    def websearch(self,text,intent):
 
         params = {
         "q": text,
