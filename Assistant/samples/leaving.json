@@ -1,5 +1,6 @@
 {
     "bye" : ["Bye!", "See you!", "Bye bye bye!"],
     "see you later" : ["See you later, aligator", "later loser", "in a while crocodile!"],
-    "see you later aligator" : ["in a while crocodile!"]
+    "see you later aligator" : ["in a while crocodile!"],
+    "au revoir" : ["Ciao", "Bon soir"]
 }

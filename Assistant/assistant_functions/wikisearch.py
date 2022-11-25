@@ -1,34 +1,48 @@
 from assistant_functions.speak_listen import speak_listen
-import wikipedia
 import time
+from serpapi import GoogleSearch
+
 
 class wikisearch:
-    def main(self, text, intent):
-        self.search(text)
+    def main(self,text,intent):
 
+        params = {
+        "q": text,
+        "hl": "en",
+        "gl": "uk",
+        "api_key": "66389e9d77c7a748284122ebe6862574e12d62c7ec9b1b37774c279adebc5a77"
+        }
 
-    def search(self,text):
+        search = GoogleSearch(params)
+        results = search.get_dict()
+
         try:
-            result = wikipedia.summary(text, sentences = 1)
-            #print(result)
-            speak_listen.say(result)
+            answer_box = results["answer_box"]
+            abss = str(answer_box)
+            start ="'answer': '"
+            end="', '"
+            boxmessage = (abss.split(start))[1].split(end)[0]
+            print(boxmessage)
         except:
             try:
-                result = wikipedia.suggest(text)
-                #print(result)
-                speak_listen.say("Sorry, did you mean "+ result)
+                organic_results = results['organic_results']
+                abss = str(organic_results)
+                start = "'snippet': '"
+                end = "', '"
+                boxmessage = (abss.split(start))[1].split(end)[0]
+                print(boxmessage)  
+                print("For more info, just google it.")
             except:
-                #print("broken")
-                speak_listen.say("yeh you have broken everything!")
-
-
-    def keyword(self,text):
-        text = text.lower()
-        splitstring = text.split()
-        string = ""
-        for word in splitstring:
-            if word != "what" and word !="when" and word !="how" and word !="where" and word !="a" and word !="is" and word !="who" and word !="was":
-                string = (string +" " + word)
+                try:
+                    related_questions = results["related_questions"]
+                    abss = str(related_questions)
+                    print(abss)
+                    start = "'snippet' : "
+                    end = ", '"
+                    boxmessage = (abss.split(start))[1].split(end)[0]
+                    print(boxmessage)  
+                except:
+                    print("wgheriuhgieh")
 
 
 wikisearch = wikisearch()
