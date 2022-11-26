@@ -1,2 +1,2 @@
 # CleeveComp3
-So Luke can write my code and Oli can copy it
+So my class can copy everything i do :D
