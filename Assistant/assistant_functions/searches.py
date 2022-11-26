@@ -19,7 +19,7 @@ class Searches:
         func = samples[most_similar]['func']
         func(text)
 
-    def translationsearch(self,text,intent):
+    def translationsearch(self,text):
         params = {
         "q": text,
         "hl": "en",
@@ -45,7 +45,7 @@ class Searches:
             print("Something is broken please try again")
 
 
-    def websearch(self,text,intent):
+    def websearch(self,text):
         params = {
         "q": text,
         "hl": "en",
@@ -83,7 +83,7 @@ class Searches:
                 except:
                     print("Something is broken please try again")
 
-    def sportsresults(self,text,intent):
+    def sportsresults(self,text):
         params = {
         "q": text,
         "hl": "en",
@@ -96,7 +96,6 @@ class Searches:
         try:
             sports_results = results['sports_results']
             abss = str(sports_results)
-            # leugue, team 1, team 2, score
             leustart = " {'league': '"
             leuend = "', '"
             league = (abss.split(leustart))[1].split(leuend)[0]
@@ -120,4 +119,3 @@ class Searches:
 
 
 searches = Searches()
-searches.sportsresults("What is the Qatar score", "intent")
