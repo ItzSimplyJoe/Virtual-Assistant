@@ -7,7 +7,7 @@ sg.theme = ("Bluemono")
 class Profile:
     def main(self,text,intent,uuid,choice):
         value = self.check(uuid,choice)
-        speak_listen.say("Would you like to set up a personal profile?")
+        speak_listen.say("Would you like to set up a personal profile?",uuid)
         if choice == "voice":
             said = speak_listen.listen()
         elif choice == "text":

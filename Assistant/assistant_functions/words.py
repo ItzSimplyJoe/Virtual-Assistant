@@ -26,7 +26,7 @@ class words:
     def definition(self,text,uuid):
         word = self.keywords(text,uuid)
         dict = Dictionary(word,0)
-        speak_listen.say(dict.meanings())
+        speak_listen.say(dict.meanings(),uuid)
     
     def synonym(self,text,uuid):
         stuff = Dictionary.synonyms(text)
