@@ -41,12 +41,7 @@ class Assistant:
             reply_func = replies[intent]
 
             if callable(reply_func):
-                print(text)
-                if reply_func == profile.main or reply_func == shoppinglist.main:
-                    reply_func(text,intent,uuid,choice)
-                elif reply_func == timer.main:
-                    reply_func(text,intent,choice)
-                reply_func(text, intent)
+                reply_func(text, intent,uuid, choice)
         except KeyError:
             speak_listen.say("Sorry, I didn't understand")
         except Exception as e:

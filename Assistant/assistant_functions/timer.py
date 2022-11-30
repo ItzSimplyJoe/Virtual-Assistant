@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 from time import sleep
 
 class Timer:
-    def main(self, text, intent, choice):
+    def main(self, text, intent, uuid, choice):
         samples = {
             'create a 10 minute timer' : {'func' : self.timerset},
             'start a 30 second timer' : {'func' : self.timerset},
@@ -14,9 +14,9 @@ class Timer:
         
         most_similar = determine_most_similar_phrase(text, samples)
         func = samples[most_similar]['func']
-        func(text)
+        func(text,uuid)
 
-    def timerset(self,text):
+    def timerset(self,text,uuid):
         text = text.lower()
         text = text.split()
         for word in text:
@@ -24,18 +24,18 @@ class Timer:
                 timeperiod = word
             elif word == "hour" or word =="hours" or word =="minute" or word == "minutes" or word == "second" or word == "seconds":
                 periodoftime = word
-        self.timechecker(periodoftime,timeperiod)
+        self.timechecker(periodoftime,timeperiod,uuid)
 
-    def timechecker(self,periodoftime,timeperiod) :   
+    def timechecker(self,periodoftime,timeperiod,uuid) :   
         if periodoftime == "hour" or periodoftime == "hours":
             time = timeperiod * 3600
         elif periodoftime == "minute" or periodoftime == "minutes":
             time = timeperiod * 60
         else:
             time = timeperiod
-        self.timerscreen(time)
+        self.timerscreen(time,uuid)
 
-    def timercreate(self,text):
+    def timercreate(self,text,uuid):
         layout = [[sg.Text("   Input Your Time")],
                   [sg.Text("Hours", size =(7, 1)),sg.InputText("0", size =(7, 1),key = "-hours-")],
                   [sg.Text("Minutes", size =(7, 1)),sg.InputText("0", size =(7, 1),key = "-mins-")],
@@ -52,12 +52,12 @@ class Timer:
                 seconds = values["-secs-"]
                 time = (hours*3600) + (minutes*60) + seconds
                 window.close()
-                self.timerscreen(time)
+                self.timerscreen(time,uuid)
             else:
                 continue
 
 
-    def timerscreen(self,time):
+    def timerscreen(self,time,uuid):
         layout = [[sg.Text("Time:"), sg.Text("TimeRemaining", size=(10,1), key="t")]]
 
         window = sg.Window("Timer",layout)
@@ -86,7 +86,7 @@ class Timer:
                 window.close()
                 break
             elif time == 0:
-                print("AHHHHHHHHHHHHHHHHHHHHHHHHhhhhhhhhH Your timer is up!")
+                speak_listen.say("AHHHHHHHHHHHHHHHHHHHHHHHHhhhhhhhhH Your timer is up!",uuid)
                 window.close()
 
 

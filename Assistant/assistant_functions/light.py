@@ -5,7 +5,7 @@ import time
 
 
 class Light:
-    def main(self, text, intent):
+    def main(self, text, intent, uuid, choice):
         samples = {
             'turn my light on' : {'func' : self.on},
             'turn on my light' : {'func' : self.on},

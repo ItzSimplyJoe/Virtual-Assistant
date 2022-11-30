@@ -183,6 +183,8 @@ def checklogin(supplied_username, supplied_password):
             text = line.encode()
             line = decrpyt(text)
             email, username, password,uuid = line.rstrip("\n").split(",")
+            uuid = uuid
+
             if username == supplied_username:
                 if password == supplied_password:
                     inputchoice(uuid)
@@ -322,4 +324,5 @@ def decrpyt(text):
     decMessage = fernet.decrypt(message).decode()
     return decMessage
 
-mainpage()
+
+mainpage()  

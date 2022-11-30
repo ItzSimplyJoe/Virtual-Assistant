@@ -5,7 +5,7 @@ from serpapi import GoogleSearch
 
 
 class Searches:
-    def main(self,text,intent):
+    def main(self,text,intent, uuid,choice):
         samples = {
             'translate hello into french' : {'func' : self.translationsearch},
             'whats the population in china' : {'func' : self.websearch},
@@ -17,9 +17,9 @@ class Searches:
         
         most_similar = determine_most_similar_phrase(text, samples)
         func = samples[most_similar]['func']
-        func(text)
+        func(text,uuid)
 
-    def translationsearch(self,text):
+    def translationsearch(self,text,uuid):
         params = {
         "q": text,
         "hl": "en",
@@ -40,12 +40,12 @@ class Searches:
             start = "'text': '"
             end = "'"
             boxmessage = (boxmessage.split(start))[1].split(end)[0]
-            speak_listen.say(boxmessage)
+            speak_listen.say(boxmessage,uuid)
         except:
-            print("Something is broken please try again")
+            speak_listen.say("Please refine your search",uuid)
 
 
-    def websearch(self,text):
+    def websearch(self,text,uuid):
         params = {
         "q": text,
         "hl": "en",
@@ -62,7 +62,7 @@ class Searches:
             start ="'answer': '"
             end="', '"
             boxmessage = (abss.split(start))[1].split(end)[0]
-            speak_listen.say(boxmessage)
+            speak_listen.say(boxmessage,uuid)
         except:
             try:
                 organic_results = results['organic_results']
@@ -70,8 +70,8 @@ class Searches:
                 start = "'snippet': '"
                 end = "', '"
                 boxmessage = (abss.split(start))[1].split(end)[0]
-                speak_listen.say(boxmessage)  
-                speak_listen.say("For more info, just google it.")
+                speak_listen.say(boxmessage,uuid)  
+                speak_listen.say("For more info, just google it.",uuid)
             except:
                 try:
                     related_questions = results["related_questions"]
@@ -79,11 +79,11 @@ class Searches:
                     start = "'snippet' : "
                     end = ", '"
                     boxmessage = (abss.split(start))[1].split(end)[0]
-                    speak_listen.say(boxmessage)  
+                    speak_listen.say(boxmessage,uuid)  
                 except:
-                    print("Something is broken please try again")
+                    speak_listen.say("Please refine your search",uuid)
 
-    def sportsresults(self,text):
+    def sportsresults(self,text,uuid):
         params = {
         "q": text,
         "hl": "en",
@@ -112,9 +112,9 @@ class Searches:
             teamtwo_score_start = "', 'score': '"
             teamtwo_score_end = "'}]"
             teamtwo_score = (abss.split(teamtwo_score_start))[1].split(teamtwo_score_end)[0]
-            speak_listen.say(f"{league} - {teamone} {teamone_score} - {teamtwo_score} {teamtwo}")
+            speak_listen.say(f"{league} - {teamone} {teamone_score} - {teamtwo_score} {teamtwo}",uuid)
         except:
-            print("Something is broken please try again")
+            speak_listen.say("Please refine your search",uuid)
 
 
 

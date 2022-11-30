@@ -14,9 +14,9 @@ class ShoppingList:
         func(text,uuid)
     def listcheck (self,text,uuid):
         with open (f"{uuid}.txt", "a") as file:
-            print("In your shopping list there is")
+            speak_listen.say("In your shopping list there is",uuid)
             for word in file:
-                print(word)
+                speak_listen.say(word,uuid)
     
     def listadd (self,text,uuid):
         text = text.lower()

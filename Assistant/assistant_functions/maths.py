@@ -4,7 +4,7 @@ import math
 import random
 
 class Maths:
-    def main(self, text, intent):
+    def main(self, text, intent, uuid, choice):
         samples = {
             'add' : {'func' : self.addition},
             '+' : {'func' : self.addition},
@@ -34,10 +34,10 @@ class Maths:
         
         most_similar = determine_most_similar_phrase(text, samples)
         func = samples[most_similar]['func']
-        func(text)
+        func(text, uuid)
 
 
-    def splittext(self,text):
+    def splittext(self,text,uuid):
         numbers = []
         lower = text.lower()
         split = lower.split()
@@ -46,43 +46,43 @@ class Maths:
                 numbers.append(word)
         return numbers
     
-    def addition(self,text):
-        numbers = self.splittext(text)
+    def addition(self,text,uuid):
+        numbers = self.splittext(text,uuid)
         total = 0
         for x in range (0,len(numbers)):
             total = total + int(numbers[x])
-        self.printcalculate(total)
+        self.printcalculate(total,uuid)
 
-    def subtraction(self,text):
-        numbers = self.splittext(text)
+    def subtraction(self,text,uuid):
+        numbers = self.splittext(text,uuid)
         total = int(numbers[0]) - int(numbers[1])
-        self.printcalculate(total)
+        self.printcalculate(total,uuid)
 
-    def multiplication(self,text):
-        numbers = self.splittext(text)
+    def multiplication(self,text,uuid):
+        numbers = self.splittext(text,uuid)
         total = 1
         for x in range (0,len(numbers)):
             total = total * int(numbers[x])
-        self.printcalculate(total)
+        self.printcalculate(total,uuid)
 
-    def division(self,text):
-        numbers = self.splittext(text)
+    def division(self,text,uuid):
+        numbers = self.splittext(text,uuid)
         total = int(numbers[0]) / int(numbers[1])
-        self.printcalculate(total)
+        self.printcalculate(total,uuid)
 
-    def square(self,text):
-        numbers = self.splittext(text)
+    def square(self,text,uuid):
+        numbers = self.splittext(text,uuid)
         total = maths.square(numbers[0])
-        self.printcalculate(total)
+        self.printcalculate(total,uuid)
 
-    def squareroot(self,text):
-        numbers = self.splittext(text)
+    def squareroot(self,text, uuid):
+        numbers = self.splittext(text,uuid)
         total = maths.squareroot(numbers[0])
-        self.printcalculate(total)
+        self.printcalculate(total,uuid)
     
-    def printcalculate(self, text):
+    def printcalculate(self, text, uuid):
         startofanswer = ["The answer is","The total is", " "]
         text = (random.choice(startofanswer) + " " + str(text))
-        speak_listen.say(text)
+        speak_listen.say(text,uuid)
 maths = Maths()
 

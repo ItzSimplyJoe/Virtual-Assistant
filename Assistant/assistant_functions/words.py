@@ -4,7 +4,7 @@ import random
 from pydictionary import Dictionary
 
 class words:
-    def main(self, text, intent):
+    def main(self, text, intent,uuid,choice):
         samples = {
             'how do i spell' : {'func' : self.spell},
             'what does potato mean' : {'func' : self.definition},
@@ -15,29 +15,29 @@ class words:
         
         most_similar = determine_most_similar_phrase(text, samples)
         func = samples[most_similar]['func']
-        func(text)
+        func(text,uuid)
 
-    def spell(self,text):
+    def spell(self,text,uuid):
         spelling = []
-        word = self.keywords(text)
+        word = self.keywords(text,uuid)
         words = list(word)
-        speak_listen.say(words)
+        speak_listen.say(words,uuid)
 
-    def definition(self,text):
-        word = self.keywords(text)
+    def definition(self,text,uuid):
+        word = self.keywords(text,uuid)
         dict = Dictionary(word,0)
         speak_listen.say(dict.meanings())
     
-    def synonym(self,text):
+    def synonym(self,text,uuid):
         stuff = Dictionary.synonyms(text)
         print(stuff)
     
-    def antonym(self,text):
+    def antonym(self,text,uuid):
         stuff = Dictionary.antonyms(text)
         print(stuff)
 
 
-    def keywords(self,text):
+    def keywords(self,text,uuid):
         text = text.lower()
         if 'how to spell' in text:
             text = text.replace('how to spell','')
