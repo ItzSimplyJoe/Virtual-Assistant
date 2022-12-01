@@ -9,7 +9,14 @@ class Timer:
             'create a 10 minute timer' : {'func' : self.timerset},
             'start a 30 second timer' : {'func' : self.timerset},
             'create a timer' : {'func' : self.timercreate},
-            'can i start a timer' : {'func' : self.timercreate}
+            'can i start a timer' : {'func' : self.timercreate},
+            'start a timer' : {'func' : self.timercreate},
+            'start timer' : {'func' : self.timercreate},
+            'create timer' : {'func' : self.timercreate},
+            'create a timer' : {'func' : self.timercreate},
+            'start a 10 minute timer' : {'func' : self.timerset},
+            'start a 30 minute timer' : {'func' : self.timerset},
+            'start a 30 second timer' : {'func' : self.timerset},
         }
         
         most_similar = determine_most_similar_phrase(text, samples)

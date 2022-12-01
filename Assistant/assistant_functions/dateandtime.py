@@ -7,7 +7,12 @@ class DateAndTime:
         samples = {
             'what day is it' : {'func' : self.day},
             'whats todays date' : {'func' : self.date},
-            'whats the time' : {'func' : self.time}
+            'whats the time' : {'func' : self.time},
+            'what time is it' : {'func' : self.time},
+            'what is the date' : {'func' : self.date},
+            'what day is today' : {'func' : self.day},
+            'what is todays date' : {'func' : self.date},
+            'what is the time' : {'func' : self.time}
         }
         
         most_similar = determine_most_similar_phrase(text, samples)
@@ -15,11 +20,11 @@ class DateAndTime:
         func(text,uuid)
 
     def day(self,text,uuid):
-        speak_listen.say((datetime.datetime.now()).strftime("%A"),uuid)
+        speak_listen.say("Today is a "+(datetime.datetime.now()).strftime("%A"),uuid)
     def date(self,text,uuid):
-        speak_listen.say("Today is",(datetime.datetime.now()).strftime("%d %B %Y"),uuid)
+        speak_listen.say("Today is "+(datetime.datetime.now()).strftime("%d %B %Y"),uuid)
     def time(self,text,uuid):
-        speak_listen.say("The time is",(datetime.datetime.now()).strftime("%H:%M"),uuid)
+        speak_listen.say("The time is "+(datetime.datetime.now()).strftime("%H:%M"),uuid)
     
 
 dateandtime = DateAndTime()

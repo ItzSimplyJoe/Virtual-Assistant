@@ -12,7 +12,8 @@ class Searches:
             'how old is king charles' : {'func' : self.websearch},
             'when did dianna die' : {'func' : self.websearch},
             'how long is a drive to london from bishops cleeve' : {'func' : self.websearch},
-            'what was the england vs iran score' : {'func' : self.sportsresults}
+            'what was the england vs iran score' : {'func' : self.sportsresults},
+            'what was the england vs germany score' : {'func' : self.sportsresults}        
         }
         
         most_similar = determine_most_similar_phrase(text, samples)

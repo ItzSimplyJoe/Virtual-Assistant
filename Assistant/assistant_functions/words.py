@@ -10,7 +10,12 @@ class words:
             'what does potato mean' : {'func' : self.definition},
             'what the definition of potato' : {'func' : self.definition},
             'whats another word for' : {'func' : self.synonym},
-            'whats the opposite of' : {'func' : self.antonym}
+            'whats the opposite of' : {'func' : self.antonym},
+            'how do you spell' : {'func' : self.spell},
+            'how to spell' : {'func' : self.spell},
+            'what does' : {'func' : self.definition},
+            'what is the definition of' : {'func' : self.definition},
+            'what is the meaning of' : {'func' : self.definition},
         }
         
         most_similar = determine_most_similar_phrase(text, samples)

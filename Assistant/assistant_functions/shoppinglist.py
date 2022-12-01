@@ -6,7 +6,10 @@ class ShoppingList:
         samples = {
             'whats on my shopping list' : {'func' : self.listcheck},
             'add tomatoes to my shopping list' : {'func' : self.listadd},
-            'list whats on my shopping list' : {'func' : self.listcheck}
+            'list whats on my shopping list' : {'func' : self.listcheck},
+            'add tomatoes to shopping list' : {'func' : self.listadd},
+            'add tomatoes to my shopping list please' : {'func' : self.listadd},
+            'add tomatoes to shopping list please' : {'func' : self.listadd},
         }
         
         most_similar = determine_most_similar_phrase(text, samples)
