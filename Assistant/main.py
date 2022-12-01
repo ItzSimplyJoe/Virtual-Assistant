@@ -34,13 +34,15 @@ class Assistant:
             'jokes' : jokes.main,
             'light' : light.main,
             'profile' : profile.main,
-            'timer' : timer.main
+            'timer' : timer.main,
+            'shoppinglist' : shoppinglist.main
             }
 
         try:
             reply_func = replies[intent]
 
             if callable(reply_func):
+                print(text)
                 reply_func(text, intent,uuid, choice)
         except KeyError:
             speak_listen.say("Sorry, I didn't understand")
