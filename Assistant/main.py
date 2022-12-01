@@ -10,7 +10,7 @@ from assistant_functions.light import light
 from assistant_functions.createprofile import profile
 from assistant_functions.timer import timer
 from assistant_functions.shoppinglist import shoppinglist
-
+from assistant_functions.dateandtime import dateandtime
 
 class Assistant:
 
@@ -35,7 +35,8 @@ class Assistant:
             'light' : light.main,
             'profile' : profile.main,
             'timer' : timer.main,
-            'shoppinglist' : shoppinglist.main
+            'shoppinglist' : shoppinglist.main,
+            'dateandtime' : dateandtime.main
             }
 
         try:
