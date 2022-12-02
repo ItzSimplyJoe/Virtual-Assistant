@@ -45,8 +45,6 @@ class Speak_Listen:
                 target_language = "jp"
             elif target_language == "chinese":
                 target_language = "ch"
-            elif target_language == "taiwanese":
-                target_language = "tw"
             elif target_language == "german":
                 target_language = "de"
             elif target_language == "english":

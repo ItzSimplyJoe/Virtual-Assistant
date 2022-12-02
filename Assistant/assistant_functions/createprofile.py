@@ -137,6 +137,7 @@ class Profile:
             func(name,age,language,uuid,choice)
 
     def save(self,name,age,language,uuid,choice):
+        speak_listen.say("Profile Created", uuid)
         file = open(f"UserProfiles/{uuid}"+".csv", "a")
         file.write(f"{name},{age},{language}")
         file.flush()
