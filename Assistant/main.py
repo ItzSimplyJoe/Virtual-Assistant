@@ -11,6 +11,7 @@ from assistant_functions.createprofile import profile
 from assistant_functions.timer import timer
 from assistant_functions.shoppinglist import shoppinglist
 from assistant_functions.dateandtime import dateandtime
+from assistant_functions.quizprogram import quiz
 
 class Assistant:
 
@@ -36,7 +37,8 @@ class Assistant:
             'profile' : profile.main,
             'timer' : timer.main,
             'shoppinglist' : shoppinglist.main,
-            'dateandtime' : dateandtime.main
+            'dateandtime' : dateandtime.main,
+            'quiz' : quiz.main
             }
 
         try:
