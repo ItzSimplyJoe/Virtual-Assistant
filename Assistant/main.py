@@ -46,6 +46,7 @@ class Assistant:
 
             if callable(reply_func):
                 print(text)
+                print("Badger:")
                 reply_func(text, intent,uuid, choice)
         except KeyError:
             speak_listen.say("Sorry, I didn't understand")

@@ -5,6 +5,7 @@ import sys
 
 class Quiz:
     def main(self,text,intent,uuid,choice):
+        print("Would you like to take a quiz?")
         speak_listen.say("Would you like to take a quiz?",uuid)
         if choice == "voice":
             said = speak_listen.listen()
@@ -40,6 +41,7 @@ class Quiz:
         func(uuid,choice)
 
     def subject(self,uuid,choice):
+        print("What subject would you like to take a quiz on?")
         speak_listen.say("What subject would you like to take a quiz on?",uuid)
         if choice == "voice":
             said = speak_listen.listen()
@@ -74,10 +76,12 @@ class Quiz:
     
     def maths(self,uuid,choice,score):
         import random
+        print("Okay good luck!")
         speak_listen.say("Okay good luck!",uuid)
         option1 = random.choice(range(1,100))
         option2 = random.choice(range(1,100))
         symbol = random.choice(["+","-","*","/"])
+        print(f"What is {option1} {symbol} {option2}?")
         speak_listen.say(f"What is {option1} {symbol} {option2}?",uuid)
         if choice == "voice":
             said = speak_listen.listen()
@@ -96,6 +100,7 @@ class Quiz:
                             window.close()
                             self.maths(uuid,choice)
                         window.close()
+        print(f"Your answer was {said}")
         speak_listen.say(f"Your answer was {said}",uuid)
         if symbol == "+":
             answer = option1 + option2
@@ -106,11 +111,15 @@ class Quiz:
         elif symbol == "/":
             answer = option1 / option2
         if float(said) == answer:
+            print("Correct!")
             speak_listen.say("Correct!",uuid)
             score = score + 1
         else:
+            print("Incorrect!")
             speak_listen.say("Incorrect!",uuid)
+        print(f"Your score is {score}")
         speak_listen.say(f"Your score is {score}",uuid)
+        print("Would you like to continue?")
         speak_listen.say("Would you like to continue?",uuid)
         if choice == "voice":
             said = speak_listen.listen()
@@ -146,22 +155,27 @@ class Quiz:
         func(uuid,choice,score)
     
     def exit(self,uuid,choice):
+        print("Okay, goodbye!")
         speak_listen.say("Okay, goodbye!",uuid)
         sys.exit()
 
     def science(self,uuid,choice,score):
+        print("Sorry, this feature is not available yet!")
         speak_listen.say("Sorry, this feature is not available yet!",uuid)
         sys.exit()
     
     def english(self,uuid,choice,score):
+        print("Sorry, this feature is not available yet!")
         speak_listen.say("Sorry, this feature is not available yet!",uuid)
         sys.exit()
     
     def history(self,uuid,choice,score):
+        print("Sorry, this feature is not available yet!")
         speak_listen.say("Sorry, this feature is not available yet!",uuid)
         sys.exit()
     
     def geography(self,uuid,choice,score):
+        print("Sorry, this feature is not available yet!")
         speak_listen.say("Sorry, this feature is not available yet!",uuid)
         sys.exit()
 

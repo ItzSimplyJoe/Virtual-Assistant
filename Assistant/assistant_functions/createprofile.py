@@ -7,6 +7,7 @@ sg.theme = ("Bluemono")
 class Profile:
     def main(self,text,intent,uuid,choice):
         value = self.check(uuid,choice)
+        print("Would you like to set up a personal profile?")
         speak_listen.say("Would you like to set up a personal profile?",uuid)
         if choice == "voice":
             said = speak_listen.listen()
@@ -42,8 +43,11 @@ class Profile:
         func(uuid,choice)
 
     def createprofile(self,uuid,choice):
+        print("Ok lets begin")
         speak_listen.say("Ok lets begin", uuid)
+        print("If at any point you wish to stop just say stop")
         speak_listen.say("If at any point you wish to stop just say stop", uuid)
+        print("Firstly, what should i call you?")
         speak_listen.say("Firstly, what should i call you?", uuid)
         if choice == "voice":
             name = speak_listen.listen()
@@ -61,6 +65,7 @@ class Profile:
                         window.close()
         if name == "stop" or name == "Stop":
             self.exit()
+        print("Ok, thankyou. How old are you")
         speak_listen.say("Ok, thankyou. How old are you", uuid)
         if choice == "voice":
             age = speak_listen.listen()
@@ -78,6 +83,7 @@ class Profile:
                         window.close()
         if age == "stop" or age == "Stop":
             self.exit()
+        print("And finally, what is your prefered language?")
         speak_listen.say("And finally, what is your prefered language?", uuid)
         if choice == "voice":
             language = speak_listen.listen()
@@ -95,10 +101,15 @@ class Profile:
                         window.close()
         if language == "stop" or language == "Stop":
             self.exit()
+        print("Ok")
         speak_listen.say("Ok", uuid)
+        print("Your name is " + name)
         speak_listen.say("Your name is " + name, uuid)
+        print("You are " + age + " years old")
         speak_listen.say("You are " + age + " years old", uuid)
+        print("And you speak " + language)
         speak_listen.say("And you speak " + language, uuid)
+        print("Is this all correct?")
         speak_listen.say("Is this all correct?", uuid)
         if choice == "voice":
             name = speak_listen.listen()
@@ -131,12 +142,14 @@ class Profile:
         most_similar = determine_most_similar_phrase(response, samples)
         func = samples[most_similar]['func']
         if func == self.createprofile:
+            print("Ok, my bad lets try this again")
             speak_listen.say("Ok, my bad lets try this again", uuid)
             func(uuid,choice)
         elif func == self.save:
             func(name,age,language,uuid,choice)
 
     def save(self,name,age,language,uuid,choice):
+        print("Profile Created")
         speak_listen.say("Profile Created", uuid)
         file = open(f"UserProfiles/{uuid}"+".csv", "a")
         file.write(f"{name},{age},{language}")
@@ -144,6 +157,7 @@ class Profile:
         file.close()
 
     def exit(self,uuid,choice):
+        print("Exiting personal profile creation")
         speak_listen.say("Exiting personal profile creation", uuid)
         exit()
 
@@ -157,6 +171,7 @@ class Profile:
         if total == 1:
             return True
         else:
+            print("You alredy have a profile created, would you like to delete your current one?")
             speak_listen.say("You alredy have a profile created, would you like to delete your current one?", uuid)
             if choice == "voice":
                 said = speak_listen.listen()

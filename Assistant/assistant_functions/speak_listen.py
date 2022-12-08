@@ -12,12 +12,9 @@ class Speak_Listen:
         self.mic = sr.Microphone()
 
     def say(self, text, uuid):
-        print("Badger:")
         text = self.uuidcheckandtranslate(text, uuid)
-        print(text)
         self.speech_engine.say(text, "speech")
         self.speech_engine.runAndWait()
-        return(text)
 
     def stop_speaking(self, name, completed):
         self.speech_engine.endLoop()

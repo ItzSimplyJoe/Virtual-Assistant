@@ -88,6 +88,7 @@ class Maths:
     def printcalculate(self, text, uuid):
         startofanswer = ["The answer is","The total is", " "]
         text = (random.choice(startofanswer) + " " + str(text))
+        print(text)
         speak_listen.say(text,uuid)
 maths = Maths()
 

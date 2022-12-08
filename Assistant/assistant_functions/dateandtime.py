@@ -20,10 +20,13 @@ class DateAndTime:
         func(text,uuid)
 
     def day(self,text,uuid):
+        print("Today is a "+(datetime.datetime.now()).strftime("%A"))
         speak_listen.say("Today is a "+(datetime.datetime.now()).strftime("%A"),uuid)
     def date(self,text,uuid):
+        print("Today is "+(datetime.datetime.now()).strftime("%d %B %Y"))
         speak_listen.say("Today is "+(datetime.datetime.now()).strftime("%d %B %Y"),uuid)
     def time(self,text,uuid):
+        print("The time is "+(datetime.datetime.now()).strftime("%H:%M"))
         speak_listen.say("The time is "+(datetime.datetime.now()).strftime("%H:%M"),uuid)
     
 

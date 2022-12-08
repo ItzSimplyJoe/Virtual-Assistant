@@ -18,8 +18,10 @@ class ShoppingList:
         func(text,uuid)
     def listcheck (self,text,uuid):
         with open (f"assistant_functions/shoppinglists/{uuid}.txt", "r") as file:
+            print("In your shopping list there is")
             speak_listen.say("In your shopping list there is",uuid)
             for line in file:
+                print(line)
                 speak_listen.say(line,uuid)
     
     def listadd (self,text,uuid):

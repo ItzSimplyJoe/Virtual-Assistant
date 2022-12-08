@@ -26,11 +26,17 @@ class words:
         spelling = []
         word = self.keywords(text,uuid)
         words = list(word)
+        for i in words:
+            spelling.append(i)
+            spelling.append(' ')
+        words = ''.join(spelling)
+        print(words)
         speak_listen.say(words,uuid)
 
     def definition(self,text,uuid):
         word = self.keywords(text,uuid)
         dict = Dictionary(word,0)
+        print(dict.meanings())
         speak_listen.say(dict.meanings(),uuid)
     
     def synonym(self,text,uuid):
