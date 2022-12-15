@@ -10,7 +10,7 @@ import os
 from main import *
 from text import *
 from voice import *
-import string
+import string 
 from cryptography.fernet import Fernet
 
 def progress_bar(): ## A pointless progress bar for aethestics, works by increasing the amount completed by 1 each time the function loops
@@ -89,7 +89,7 @@ def create_account():#Account creation, broken down into the layout, and the fun
                 mainpage()
     window.close()
 
-def accountcreation(email,username,password):
+def accountcreation(email,username,password):#The account creation module, broken down into the layout and the functionality
     file = open("logincredentials.txt", "a")
     uuid = ''.join(random.choice(string.ascii_letters) for i in range(20))
     text = ((email) + "," + (username) + "," + (password) + "," + (uuid))
@@ -99,7 +99,7 @@ def accountcreation(email,username,password):
     progress_bar()
     inputchoice(uuid)
 
-def login():
+def login(): # The login module, broken down into the layout and the functionality
     #sg.theme("Bluemono")
     layout = [[sg.Text("Log In", size =(15, 1), font=40), sg.Text("                                                                                        "), sg.Button("Forgotten Password?")],
             [sg.Text("Username", size =(15, 1), font=16),sg.InputText(key='-username-', font=16)],
@@ -129,7 +129,7 @@ def login():
 
     window.close()
 
-def forgottenpassword():
+def forgottenpassword():#The forgotten password module, broken down into the layout and the functionality
     #sg.theme("Bluemono")
     fontsmall = ("Arial",11)
     fontbig = ("Arial",40)
@@ -156,7 +156,7 @@ def forgottenpassword():
                 checkemail(email)
     window.close()
 
-def checkemail(supplied_email):
+def checkemail(supplied_email):#Checks if the email is in the system, if it is, it sends an OTP to the email
     total = 0
     with open('Logincredentials.txt', 'r') as file:
         for line in file:
@@ -174,7 +174,7 @@ def checkemail(supplied_email):
         elif total == 0:
             sg.popup("That email does not have an account in the system, create an account instead!")
 
-def checklogin(supplied_username, supplied_password):
+def checklogin(supplied_username, supplied_password):#Checks if the login details are correct
     with open('Logincredentials.txt', 'r') as file:
         for line in file:
             if "b'" in line:
@@ -192,7 +192,7 @@ def checklogin(supplied_username, supplied_password):
             sg.popup("Incorrect login, please try again")
             login()
 
-def mainpage():
+def mainpage():#The main page module, broken down into the layout and the functionality
     #sg.theme("BlueMono")
     layout = [[sg.Text("    Welcome to my Virtual Assistant", size =(30, 1), font=40)],
             [sg.Button("Log In", size =(30, 1), font=40)],
@@ -215,7 +215,7 @@ def mainpage():
 
     window.close()
 
-def OTP(inputted_email):
+def OTP(inputted_email):#The OTP module, broken down into the layout and the functionality
     otp = random.randint(100000,999999)
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
         smtp.ehlo()
@@ -233,7 +233,7 @@ def OTP(inputted_email):
         smtp.sendmail('joesvirtualassistant@gmail.com', inputted_email, msg)
     OTPscreen(inputted_email,otp)
 
-def OTPscreen(inputted_email,otp):
+def OTPscreen(inputted_email,otp):#The OTP screen module, broken down into the layout and the functionality
     #sg.theme('Bluemono')
     layout = [[sg.Text("Change Password, check junk email!", size =(35, 1), font=40, justification='c')],
              [sg.Text("One Time Password", size =(20, 1), font=16), sg.InputText(key='-otp-', font=16)],
@@ -287,7 +287,7 @@ def OTPscreen(inputted_email,otp):
                 mainpage()
     window.close()
 
-def inputchoice(uuid):
+def inputchoice(uuid):#The input choice module, broken down into the layout and the functionality
     #sg.theme("Bluemono")
     layout = [[sg.Text("    Would you like to use Voice or Text?", size =(30, 1), font=40)],
             [sg.Button("Voice", size =(30, 1), font=40)],
@@ -310,14 +310,14 @@ def inputchoice(uuid):
 
     window.close()
 
-def encrypt(text):
+def encrypt(text):# The encryption module
     message = text
     key = b'j5CqBXeLXLEjvHBJm6_RIigxtxx0pjdMZc3d7u65aFY='
     fernet = Fernet(key)
     encMessage = fernet.encrypt(message.encode())
     return encMessage
 
-def decrpyt(text):
+def decrpyt(text):# The decryption module
     message = text
     key = b'j5CqBXeLXLEjvHBJm6_RIigxtxx0pjdMZc3d7u65aFY='
     fernet = Fernet(key)

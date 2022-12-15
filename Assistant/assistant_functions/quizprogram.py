@@ -113,7 +113,7 @@ class Quiz:
         if float(said) == answer:
             print("Correct!")
             speak_listen.say("Correct!",uuid)
-            score = score + 1
+            score =+ 1
         else:
             print("Incorrect!")
             speak_listen.say("Incorrect!",uuid)
@@ -154,7 +154,7 @@ class Quiz:
         func = samples[most_similar]['func']
         func(uuid,choice,score)
     
-    def exit(self,uuid,choice):
+    def exit(self,uuid,choice,score):
         print("Okay, goodbye!")
         speak_listen.say("Okay, goodbye!",uuid)
         sys.exit()

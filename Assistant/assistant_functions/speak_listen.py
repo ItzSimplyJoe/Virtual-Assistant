@@ -20,7 +20,6 @@ class Speak_Listen:
         self.speech_engine.endLoop()
 
     def listen(self):
-    
         with self.mic as source:
             print("Listening")
             self.r.non_speaking_duration = 0.5
@@ -62,9 +61,12 @@ class Speak_Listen:
                 target_language = "se"
         except:
             target_language = 'en'
-        translator = Translator(to_lang=target_language)
-        translation = translator.translate(text)
-        return translation
+        if target_language == 'en':
+            return(text)
+        else:
+            translator = Translator(to_lang=target_language)
+            translation = translator.translate(text)
+            return translation
 
 
 speak_listen = Speak_Listen()
