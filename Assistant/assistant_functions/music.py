@@ -11,7 +11,7 @@ import urllib.request
 from assistant_functions.speak_listen import Speak_Listen
 
 class music:
-    def main(self,text,intent):
+    def main(self,text,intent,uuid,choice):
         text = text.lower()
         if 'play' in text:
             text = text.replace('play','')

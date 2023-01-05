@@ -2,9 +2,10 @@ from assistant_functions.speak_listen import speak_listen
 from intentclassification.intent_classification import IntentClassifier
 from assistant_functions.reply import reply
 from assistant_functions.maths import maths
-from assistant_functions.searches import searches
+from assistant_functions.gpt import gpt
 from assistant_functions.music import music
 from assistant_functions.words import words
+from assistant_functions.searches import searches
 from assistant_functions.jokes import jokes
 from assistant_functions.light import light
 from assistant_functions.createprofile import profile
@@ -29,6 +30,7 @@ class Assistant:
             'insult' : reply,
             'questions' : reply,
             'maths' : maths.main,
+            'gpt' : gpt.main,
             'searches' : searches.main,
             'words' : words.main,
             'music' : music.main,
