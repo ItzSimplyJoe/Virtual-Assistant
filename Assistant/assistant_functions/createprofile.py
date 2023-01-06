@@ -3,7 +3,7 @@ from assistant_functions.determine_most_similar import determine_most_similar_ph
 import PySimpleGUI as sg
 import os
 
-sg.theme = ("Bluemono")
+sg.change_look_and_feel("DarkGrey3")
 class Profile:
     def main(self,text,intent,uuid,choice):
         value = self.check(uuid,choice)
@@ -15,7 +15,7 @@ class Profile:
             lists = ["Yes","No","Stop"]
             layout = [[sg.Text("Would you like to setup a personal profile?", size =(40, 1), font=40)],
             [sg.Combo(lists, key='-choice-', font=16),sg.Button("Submit")]]
-            window = sg.Window("Check", layout, resizable=False)
+            window = sg.Window("Check", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
             while True:
                 event,values = window.read()
                 if event == sg.WIN_CLOSED:
@@ -54,7 +54,7 @@ class Profile:
         elif choice == "text":
             layout = [[sg.Text("What should i call you?", size =(20, 1), font=40)],
             [sg.InputText(key='-name-', font=16),sg.Button("Submit")]]
-            window = sg.Window("Name", layout, resizable=False)
+            window = sg.Window("Name", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
             while True:
                 event,values = window.read()
                 if event == sg.WIN_CLOSED:
@@ -72,7 +72,7 @@ class Profile:
         elif choice == "text":
             layout = [[sg.Text("How old are you?", size =(15, 1), font=40)],
             [sg.InputText(key='-age-', font=16),sg.Button("Submit")]]
-            window = sg.Window("Age", layout, resizable=False)
+            window = sg.Window("Age", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
             while True:
                 event,values = window.read()
                 if event == sg.WIN_CLOSED:
@@ -90,7 +90,7 @@ class Profile:
         elif choice == "text":
             layout = [[sg.Text("What is your prefered language?", size =(25, 1), font=40)],
             [sg.InputText(key='-language-', font=16),sg.Button("Submit")]]
-            window = sg.Window("Language", layout, resizable=False)
+            window = sg.Window("Language", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
             while True:
                 event,values = window.read()
                 if event == sg.WIN_CLOSED:
@@ -117,7 +117,7 @@ class Profile:
             lists = ["Yes","No","Stop"]
             layout = [[sg.Text("Is this correct?", size =(15, 1), font=40)],
             [sg.Combo(lists, key='-correct-', font=16),sg.Button("Submit")]]
-            window = sg.Window("Check", layout, resizable=False)
+            window = sg.Window("Check", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
             while True:
                 event,values = window.read()
                 if event == sg.WIN_CLOSED:
@@ -179,7 +179,7 @@ class Profile:
                 lists = ["Yes","No"]
                 layout = [[sg.Text("Are you sure you would like to delete your old one?", size =(40, 1), font=40)],
                 [sg.Combo(lists, key='-choice-', font=16),sg.Button("Submit")]]
-                window = sg.Window("Check", layout, resizable=False)
+                window = sg.Window("Check", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
                 while True:
                     event,values = window.read()
                     if event == sg.WIN_CLOSED:

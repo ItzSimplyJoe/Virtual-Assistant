@@ -2,27 +2,21 @@ from tkinter import CENTER
 import PySimpleGUI as sg
 import random
 from main import *
-import asyncio
-import pvporcupine
-import pyaudio
-import struct
-from assistant_functions.speak_listen import speak_listen
 
-
-
+sg.change_look_and_feel("DarkGrey3")
 class Text:
+    
     def __init__(self, name):
+        
         self.name = name
         
-    async def gui(self, uuid, choice):
-        bulletpoints = ["Ask whats 124 x 125", "Ask a maths question?", "Ask how the virtual assistant is?", "Insult it", "Compliment it", "Ask it to play a song", "Ask it to translate something into a different language", "Ask it how to spell something", "Ask it what something means","Just say hi"]
+    def main(self,uuid,choice):
+        bulletpoints = ["Ask a maths question", "Create a personal profile","Ask for the date", "Ask for the time", "Using chatgpt write an essay", "Using chatgpt write a program", "Ask for a joke", "Play a song", "Ask Badger to quiz you", "Ask a general question", "Ask for a translation into French", "Create a shopping list", "Ask for a definition", "Ask for a synonym", "Ask for an antonym", "Compliment it", "Say Hello", "Ask how it is", "Insult it"]
         titlefont = ("coolvetica compressed hv",35)
         bodyfonts = ("coolvetica rg",12)
 
-
         leftside = [
-            [sg.Text("            Virtual Assistant", size =(20, 1), font=titlefont)],
-            [sg.Text(" ")],
+            [sg.Text("Oi Badger!", size =(20, 1), justification=CENTER, font=titlefont)],
             [sg.Text("Suggestions:", justification=CENTER, font = bodyfonts)],
             [sg.Text(random.choice(bulletpoints), justification=CENTER, font = bodyfonts)],
             [sg.Text(random.choice(bulletpoints), justification=CENTER, font = bodyfonts)],  
@@ -30,8 +24,8 @@ class Text:
             ]
 
         rightside = [
-            [sg.Output(size=(60,10), key='-OUTPUT-')],
-            [sg.Text("How can i help?", size =(13, 1), font=bodyfonts),sg.InputText(key='-input-', size = (40,1), do_not_clear=False), sg.Button("Submit")],
+            [sg.Output(size=(65,10), key='-OUTPUT-')],
+            [sg.Text("How can i help?", size =(13, 1), font=bodyfonts),sg.InputText(key='-input-', size = (40,1), do_not_clear=False), sg.Button("Submit", size = (7,1))],
             ]
 
         layout = [
@@ -40,63 +34,21 @@ class Text:
             ]
             ]
 
-        window = sg.Window("Virtual Asisstant", layout, resizable=True)
+        window = sg.Window("Oi Badger!", layout, resizable=False, titlebar_background_color="grey", background_color="#8e6dae", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
         while True:
             event, values = window.read()
             if event == "Exit" or event == sg.WIN_CLOSED:
                 quit()
             if event == "Submit":
                 input = values['-input-']
-                if input is not None:
+                if len(input) != 0:
                     print("You:")
                     stufftooutput = assistant.reply(input,uuid,choice)
                     window['-OUTPUT-'].update(stufftooutput)
+                else:
+                    speak_listen.say("Please dont leave the box blank",uuid)
             else:
                 continue
-    async def voice(self, uuid, choice):
-        self.porcupine = None
-        pa = None
-        audio_stream = None
-
-
-        self.porcupine = pvporcupine.create(
-        access_key = "K3bYmOitsrCNs5ai3C0qQLkcKhWPaVd59cP5+tkpANbq0NCm1nBc7g==",
-        keyword_paths = ['C:/Users/Owner/OneDrive/Desktop/CleeveComp3/Assistant/Keywords/badger.ppn'],
-        keywords = ['Oi Badger']
-        )   
-
-        pa = pyaudio.PyAudio()
-        print("Ready")
-
-        while True:
-            try:
-                pcm = audio_stream.read(self.porcupine.frame_length)
-                pcm = struct.unpack_from("h" * self.porcupine.frame_length, pcm)
-                keyword_index = self.porcupine.process(pcm)
-                if keyword_index >= 0:
-                    print("I heard my name")
-                    if audio_stream is not None:
-                        audio_stream.close()
-                    said = speak_listen.listen()
-                    assistant.reply(said,uuid,choice)
-            except:
-                audio_stream = pa.open(
-                rate=self.porcupine.sample_rate,
-                channels=1,
-                format=pyaudio.paInt16,
-                input=True,
-                frames_per_buffer=self.porcupine.frame_length)
-
-
-loop = asyncio.new_event_loop()
-
-asyncio.set_event_loop(loop)
 
 text = Text("Badger")
-
-task1 = loop.create_task(text.gui("cSUYeWwXKwlYmRGdkZWz", "test"))
-task2 = loop.create_task(text.voice("cSUYeWwXKwlYmRGdkZWz", "test"))
-
-tasks = [task1, task2]
-
-loop.run_until_complete(asyncio.wait(tasks))
+#text.main("123","text")

@@ -2,6 +2,7 @@ from assistant_functions.speak_listen import speak_listen
 from assistant_functions.determine_most_similar import determine_most_similar_phrase
 import PySimpleGUI as sg
 import sys
+sg.change_look_and_feel("DarkGrey3")
 
 class Quiz:
     def main(self,text,intent,uuid,choice):
@@ -13,7 +14,7 @@ class Quiz:
             lists = ["Yes","No","Stop"]
             layout = [[sg.Text("Would you like to take a quiz?", size =(40, 1), font=40)],
             [sg.Combo(lists, key='-choice-', font=16),sg.Button("Submit")]]
-            window = sg.Window("Check", layout, resizable=False)
+            window = sg.Window("Check", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
             while True:
                 event,values = window.read()
                 if event == sg.WIN_CLOSED:
@@ -49,7 +50,7 @@ class Quiz:
             lists = ["Maths","Science","English","History","Geography","Stop"]
             layout = [[sg.Text("What subject would you like to take a quiz on?", size =(40, 1), font=40)],
             [sg.Combo(lists, key='-choice-', font=16),sg.Button("Submit")]]
-            window = sg.Window("Check", layout, resizable=False)
+            window = sg.Window("Check", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
             while True:
                 event,values = window.read()
                 if event == sg.WIN_CLOSED:
@@ -88,7 +89,7 @@ class Quiz:
         elif choice == "text":
             layout = [[sg.Text("What is the answer?", size =(40, 1), font=40)],
             [sg.Input(key='-choice-', font=16),sg.Button("Submit")]]
-            window = sg.Window("Check", layout, resizable=False)
+            window = sg.Window("Check", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
             while True:
                 event,values = window.read()
                 if event == sg.WIN_CLOSED:
@@ -127,7 +128,7 @@ class Quiz:
             lists = ["Yes","No","Stop"]
             layout = [[sg.Text("Would you like to continue?", size =(40, 1), font=40)],
             [sg.Combo(lists, key='-choice-', font=16),sg.Button("Submit")]]
-            window = sg.Window("Check", layout, resizable=False)
+            window = sg.Window("Check", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
             while True:
                 event,values = window.read()
                 if event == sg.WIN_CLOSED:

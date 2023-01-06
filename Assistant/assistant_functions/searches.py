@@ -41,6 +41,7 @@ class Searches:
             start = "'text': '"
             end = "'"
             boxmessage = (boxmessage.split(start))[1].split(end)[0]
+            print(boxmessage)
             speak_listen.say(boxmessage,uuid)
         except:
             speak_listen.say("Please refine your search",uuid)
@@ -63,6 +64,7 @@ class Searches:
             start ="'answer': '"
             end="', '"
             boxmessage = (abss.split(start))[1].split(end)[0]
+            print(boxmessage)
             speak_listen.say(boxmessage,uuid)
         except:
             try:
@@ -71,6 +73,7 @@ class Searches:
                 start = "'snippet': '"
                 end = "', '"
                 boxmessage = (abss.split(start))[1].split(end)[0]
+                print(boxmessage)
                 speak_listen.say(boxmessage,uuid)  
                 speak_listen.say("For more info, just google it.",uuid)
             except:
@@ -80,8 +83,10 @@ class Searches:
                     start = "'snippet' : "
                     end = ", '"
                     boxmessage = (abss.split(start))[1].split(end)[0]
+                    print(boxmessage)
                     speak_listen.say(boxmessage,uuid)  
                 except:
+                    print("Please refine your search")
                     speak_listen.say("Please refine your search",uuid)
 
     def sportsresults(self,text,uuid):
@@ -113,8 +118,10 @@ class Searches:
             teamtwo_score_start = "', 'score': '"
             teamtwo_score_end = "'}]"
             teamtwo_score = (abss.split(teamtwo_score_start))[1].split(teamtwo_score_end)[0]
+            print("The score is " + teamone + " " + teamone_score + " - " + teamtwo_score + " " + teamtwo)
             speak_listen.say(f"{league} - {teamone} {teamone_score} - {teamtwo_score} {teamtwo}",uuid)
         except:
+            print("Please refine your search")
             speak_listen.say("Please refine your search",uuid)
 
 

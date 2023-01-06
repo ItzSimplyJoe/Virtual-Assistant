@@ -12,6 +12,7 @@ from text import *
 from voice import *
 import string 
 from cryptography.fernet import Fernet
+sg.change_look_and_feel("DarkGrey3")
 
 def progress_bar(): ## A pointless progress bar for aethestics, works by increasing the amount completed by 1 each time the function loops
     #sg.theme('BlueMono')
@@ -19,7 +20,7 @@ def progress_bar(): ## A pointless progress bar for aethestics, works by increas
             [sg.ProgressBar(1000, orientation='h', size=(20, 20), key='progbar')],
             [sg.Cancel()]]
 
-    window = sg.Window('Working...', layout)
+    window = sg.Window('Working...', layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
     for i in range(1000):
         event, values = window.read(timeout=1)
         if event == 'Cancel' or event == sg.WIN_CLOSED:
@@ -36,7 +37,7 @@ def create_account():#Account creation, broken down into the layout, and the fun
              [sg.Text("Re-Enter Password", size =(17, 1), font=16), sg.InputText(key='-rpassword-', font=16, password_char='*')],
              [sg.Button("Back"),  sg.Text("                                                                                                                                                  "), sg.Button("Submit")]]
 
-    window = sg.Window("Sign Up", layout, resizable=True)
+    window = sg.Window("Sign Up", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
 
     #while the program is running check to see if the window has been closed
     while True:
@@ -58,6 +59,8 @@ def create_account():#Account creation, broken down into the layout, and the fun
                         password = values['-password-']
                         if len(password) < 7:
                             sg.popup("Error Password must be at least 8 characters long")
+                            total += 1
+                            window.close()
                             create_account()
                         elif len(password) > 8:
                             with open('logincredentials.txt', 'r') as file:
@@ -70,10 +73,10 @@ def create_account():#Account creation, broken down into the layout, and the fun
                                     email1,username1,password1,uuid = line.rstrip("\n").split(",")
                                     if email1 == email:
                                         sg.popup("Someone has already signed up with that email!")
-                                        total = total + 1
+                                        total += 1
                                         continue
                                     elif username1 == username:
-                                        total = total + 1
+                                        total += 1
                                         sg.popup("Someone has already signed up with that username!")
                                         continue
                         if total > 0:
@@ -82,8 +85,6 @@ def create_account():#Account creation, broken down into the layout, and the fun
                             window.close()
                             accountcreation(email,username,password)
                             break
-                
-
             elif event == "Back":
                 window.close()
                 mainpage()
@@ -104,10 +105,11 @@ def login(): # The login module, broken down into the layout and the functionali
     layout = [[sg.Text("Log In", size =(15, 1), font=40), sg.Text("                                                                                        "), sg.Button("Forgotten Password?")],
             [sg.Text("Username", size =(15, 1), font=16),sg.InputText(key='-username-', font=16)],
             [sg.Text("Password", size =(15, 1), font=16),sg.InputText(key='-password-', password_char='*', font=16)],
+            [sg.Checkbox("Remember Me", key="-rememberme-")],
              [sg.Button("Back"),  sg.Text("                                                                                                                                             "), sg.Button("Submit")]]
 
 
-    window = sg.Window("Log In", layout, resizable=True)
+    window = sg.Window("Log In", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
 
     while True:
         event,values = window.read()
@@ -120,8 +122,17 @@ def login(): # The login module, broken down into the layout and the functionali
             elif event == "Submit":
                 password = values['-password-']
                 username = values['-username-']
-                window.close()
-                checklogin(username,password)
+                if password == "" or username == "":
+                    sg.popup("Please fill in all of the boxes!", font=16)
+                    continue
+                else:
+                    if values['-rememberme-'] == True:
+                        window.close()
+                        checklogin(username,password,True)
+                    else:
+                        window.close()
+                        checklogin(username,password,False)
+
             elif event == "Forgotten Password?":
                 window.close()
                 forgottenpassword()
@@ -174,7 +185,7 @@ def checkemail(supplied_email):#Checks if the email is in the system, if it is, 
         elif total == 0:
             sg.popup("That email does not have an account in the system, create an account instead!")
 
-def checklogin(supplied_username, supplied_password):#Checks if the login details are correct
+def checklogin(supplied_username, supplied_password, rememberme):#Checks if the login details are correct
     with open('Logincredentials.txt', 'r') as file:
         for line in file:
             if "b'" in line:
@@ -184,13 +195,17 @@ def checklogin(supplied_username, supplied_password):#Checks if the login detail
             line = decrpyt(text)
             email, username, password,uuid = line.rstrip("\n").split(",")
             uuid = uuid
-
             if username == supplied_username:
                 if password == supplied_password:
-                    inputchoice(uuid)
-        else:
-            sg.popup("Incorrect login, please try again")
-            login()
+                    if rememberme == True:
+                        with open('rememberme.txt', 'w') as file:
+                            file.write(str(uuid))
+                            inputchoice(uuid,username)
+                    else:
+                        inputchoice(uuid,username)
+            elif username != supplied_username or password != supplied_password:
+                sg.popup("Incorrect login, please try again")
+                login()
 
 def mainpage():#The main page module, broken down into the layout and the functionality
     #sg.theme("BlueMono")
@@ -199,7 +214,7 @@ def mainpage():#The main page module, broken down into the layout and the functi
             [sg.Text("", size =(30, 1), font=40)],
             [sg.Button("Sign Up", size =(30, 1), font=40)]]
 
-    window = sg.Window("Virtual Assistant", layout, resizable=True)
+    window = sg.Window("Virtual Assistant", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
 
     while True:
         event,values = window.read()
@@ -241,7 +256,7 @@ def OTPscreen(inputted_email,otp):#The OTP screen module, broken down into the l
              [sg.Text("Re-Enter New Password", size =(20, 1), font=16), sg.InputText(key='-rpassword-', font=16, password_char='*')],
              [sg.Button("Back"),  sg.Text("                                                                                                                                                  "), sg.Button("Submit")]]
 
-    window = sg.Window("Change Password", layout, resizable=True)
+    window = sg.Window("Change Password", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
 
     
     while True:
@@ -287,14 +302,15 @@ def OTPscreen(inputted_email,otp):#The OTP screen module, broken down into the l
                 mainpage()
     window.close()
 
-def inputchoice(uuid):#The input choice module, broken down into the layout and the functionality
+def inputchoice(uuid,username):#The input choice module, broken down into the layout and the functionality
     #sg.theme("Bluemono")
-    layout = [[sg.Text("    Would you like to use Voice or Text?", size =(30, 1), font=40)],
+    layout = [[sg.Text(f"Welcome back {username}", size = (30,1), font = 40, justification = CENTER)],
+            [sg.Text("Would you like to use Voice or Text?", size =(30, 1),justification = CENTER,  font=30)],
             [sg.Button("Voice", size =(30, 1), font=40)],
             [sg.Text("", size =(30, 1), font=40)],
             [sg.Button("Text", size =(30, 1), font=40)]]
 
-    window = sg.Window("Virtual Assistant", layout, resizable=True)
+    window = sg.Window("Virtual Assistant", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
 
     while True:
         event,values = window.read()
@@ -324,5 +340,22 @@ def decrpyt(text):# The decryption module
     decMessage = fernet.decrypt(message).decode()
     return decMessage
 
-
-mainpage()
+def checkforsavedlogin():
+    with open ("rememberme.txt","r") as file:
+        uuid1 = file.read()
+        if len(uuid1) == 20:
+            with open('Logincredentials.txt', 'r') as file:
+                for line in file:
+                    if "b'" in line:
+                        line = line.replace("b'", "")
+                        line = line.replace("'","")
+                    text = line.encode()
+                    line = decrpyt(text)
+                    email, username, password,uuid = line.rstrip("\n").split(",")
+                    if uuid == uuid1:
+                        inputchoice(uuid,username)
+                    else:
+                        continue
+        else:
+            mainpage()
+checkforsavedlogin()

@@ -10,7 +10,7 @@ import urllib.parse
 import urllib.request
 from assistant_functions.speak_listen import Speak_Listen
 
-class music:
+class Music:
     def main(self,text,intent,uuid,choice):
         text = text.lower()
         if 'play' in text:
@@ -36,4 +36,4 @@ class music:
         time.sleep(vidlength)
         media.stop()
     
-music = music()
+music = Music()

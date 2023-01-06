@@ -13,6 +13,8 @@ from assistant_functions.timer import timer
 from assistant_functions.shoppinglist import shoppinglist
 from assistant_functions.dateandtime import dateandtime
 from assistant_functions.quizprogram import quiz
+from assistant_functions.location import location
+from assistant_functions.weather import weather
 
 class Assistant:
 
@@ -40,12 +42,13 @@ class Assistant:
             'timer' : timer.main,
             'shoppinglist' : shoppinglist.main,
             'dateandtime' : dateandtime.main,
-            'quiz' : quiz.main
+            'quiz' : quiz.main,
+            'location' : location.main,
+            'weather' : weather.main
             }
 
         try:
             reply_func = replies[intent]
-
             if callable(reply_func):
                 print(text)
                 print("Badger:")

@@ -12,7 +12,7 @@ class GPT:
         elif "usingchatgpt" in text:
             text = text.replace("usingchatgpt","")
         print("Give me a moment...")
-        openai.api_key = ("sk-inputthinghere")
+        openai.api_key = ("sk-eoigrjeoigj")
         query = text
         model = "text-davinci-003"
         response = openai.Completion.create(

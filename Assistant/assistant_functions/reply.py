@@ -10,10 +10,9 @@ def reply(text, intent,uuid,choice):
     most_similar = determine_most_similar_phrase(text = text, intent_dict = samples)
 
     if type(samples[most_similar]) == str:
-        choice = samples[most_similar]
-        print(choice)
-        speak_listen.say(choice,uuid)
+        print(samples[most_similar])
+        speak_listen.say(samples[most_similar],uuid)
     elif type(samples[most_similar]) == list:
-        choice = random.choice(samples[most_similar])
-        print(choice)
-        speak_listen.say(choice,uuid)
+        new = random.choice(samples[most_similar])
+        print(new)
+        speak_listen.say(new,uuid)

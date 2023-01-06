@@ -42,8 +42,11 @@ class IntentClassifier: ### Makes use of naive bayes classifier algorithm ###
                 file = open('intentclassification/data.csv', 'a')
                 writer = csv.writer(file)
                 list = [text,intent]
-                writer.writerow(list)
-                file.close()
+                if list != ",maths":
+                    writer.writerow(list)
+                    file.close()
+                else:
+                    file.close()
 
 
 

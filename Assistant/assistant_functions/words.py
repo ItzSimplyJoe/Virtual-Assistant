@@ -3,7 +3,7 @@ from assistant_functions.determine_most_similar import determine_most_similar_ph
 import random
 from pydictionary import Dictionary
 
-class words:
+class Words:
     def main(self, text, intent,uuid,choice):
         samples = {
             'how do i spell' : {'func' : self.spell},
@@ -73,4 +73,4 @@ class words:
         return text
 
 
-words = words()
+words = Words()

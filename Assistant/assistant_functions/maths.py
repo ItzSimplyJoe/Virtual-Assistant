@@ -12,14 +12,11 @@ class Maths:
             'x' : {'func' : self.multiplication},
             '*' : {'func' : self.multiplication},
             '/' : {'func' : self.division},
+            'What is 7 * 4' : {'func' : self.multiplication},
             'What is 7 / 4' : {'func' : self.division},
-            'What is 8 x 5' : {'func' : self.multiplication},
-            'What is 2 + 64' : {'func' : self.addition},
-            'What is 35 - 3' : {'func' : self.subtraction},
-            'What is 35 / 5' : {'func' : self.division},
-            'What is 23 x 35' : {'func' : self.multiplication},
-            'What is 9 - 52' : {'func' : self.subtraction},
-            'What is 235 + 23' : {'func' : self.addition},
+            'What is 7 x 4' : {'func' : self.multiplication},
+            'What is 7 - 4' : {'func' : self.subtraction},
+            'What is 7 + 4' : {'func' : self.addition},
             'minus' : {'func' : self.subtraction},
             'take away' : {'func' : self.subtraction},
             'subtract' : {'func' : self.subtraction},
@@ -86,7 +83,7 @@ class Maths:
         self.printcalculate(total,uuid)
     
     def printcalculate(self, text, uuid):
-        startofanswer = ["The answer is","The total is", " "]
+        startofanswer = ["The answer is","The total is", ""]
         text = (random.choice(startofanswer) + " " + str(text))
         print(text)
         speak_listen.say(text,uuid)

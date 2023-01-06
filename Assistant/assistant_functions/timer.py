@@ -2,6 +2,7 @@ from assistant_functions.speak_listen import speak_listen
 from assistant_functions.determine_most_similar import determine_most_similar_phrase
 import PySimpleGUI as sg
 from time import sleep
+sg.change_look_and_feel("DarkGrey3")
 
 class Timer:
     def main(self, text, intent, uuid, choice):
@@ -67,7 +68,7 @@ class Timer:
     def timerscreen(self,time,uuid):
         layout = [[sg.Text("Time:"), sg.Text("TimeRemaining", size=(10,1), key="t")]]
 
-        window = sg.Window("Timer",layout)
+        window = sg.Window("Timer",layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
         hours = 0
         mins = 0
         seconds = 0
