@@ -8,7 +8,7 @@ import pyowm
 
 class Weather:
     def __init__(self):
-        self.own= pyowm.OWM("30b198a6beaedec7ee6eaaeb93a97837").weather_manager()
+        self.own= pyowm.OWM("notforyouguystosee").weather_manager()
 
     def main(self, text, intent):
         samples = {
