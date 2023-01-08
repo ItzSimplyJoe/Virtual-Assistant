@@ -13,6 +13,8 @@ class Speak_Listen:
 
     def say(self, text, uuid):
         text = self.uuidcheckandtranslate(text, uuid)
+        self.speech_engine.setProperty('voice', self.checkvoice(uuid))
+        self.speech_engine.setProperty('volume', self.checkvolume(uuid))
         self.speech_engine.say(text, "speech")
         self.speech_engine.runAndWait()
 
@@ -26,6 +28,20 @@ class Speak_Listen:
             audio = self.r.listen(source, timeout=7, phrase_time_limit=5)
     
         return (self.r.recognize_google(audio))
+    def checkvoice(self,uuid):
+        try:
+            with open(f"UserProfiles/{uuid}.txt", "r") as file:
+                volume,voice = file.read().split(",")
+                return voice
+        except:
+            return "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\MSTTS_V110_enGB_GeorgeM"
+    def checkvolume(self,uuid):
+        try:
+            with open(f"UserProfiles/{uuid}.txt", "r") as file:
+                volume,voice = file.read().split(",")
+                return int(volume)
+        except:
+            return 50
 
     def uuidcheckandtranslate(self,text, uuid):
         try:

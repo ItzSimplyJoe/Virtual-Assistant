@@ -12,7 +12,8 @@ from text import *
 from voice import *
 import string 
 from cryptography.fernet import Fernet
-sg.change_look_and_feel("DarkGrey3")
+from textfunctions import *
+
 
 def progress_bar(): ## A pointless progress bar for aethestics, works by increasing the amount completed by 1 each time the function loops
     #sg.theme('BlueMono')
@@ -93,6 +94,10 @@ def create_account():#Account creation, broken down into the layout, and the fun
 def accountcreation(email,username,password):#The account creation module, broken down into the layout and the functionality
     file = open("logincredentials.txt", "a")
     uuid = ''.join(random.choice(string.ascii_letters) for i in range(20))
+    with open (f'userconfigs/{uuid}.txt', 'a') as file:
+        file.write("coolvetica rg,12,coolvetica compressed hv,35,DarkGrey3")
+        file.flush()
+        file.close()
     text = ((email) + "," + (username) + "," + (password) + "," + (uuid))
     text = encrypt(text)
     file.write(str(text) + "\n")
@@ -198,8 +203,10 @@ def checklogin(supplied_username, supplied_password, rememberme):#Checks if the 
             if username == supplied_username:
                 if password == supplied_password:
                     if rememberme == True:
-                        with open('rememberme.txt', 'w') as file:
+                        with open('rememberme.txt', 'a') as file:
                             file.write(str(uuid))
+                            file.flush()
+                            file.close()
                             inputchoice(uuid,username)
                     else:
                         inputchoice(uuid,username)
@@ -304,6 +311,10 @@ def OTPscreen(inputted_email,otp):#The OTP screen module, broken down into the l
 
 def inputchoice(uuid,username):#The input choice module, broken down into the layout and the functionality
     #sg.theme("Bluemono")
+    bodyfont,bodyfontsize,titlefont,titlefontsize,style = textfunctions.lookscheck(uuid)
+    bodyfonts = (bodyfont,int(bodyfontsize))
+    titlefont = (titlefont,int(titlefontsize))
+    sg.change_look_and_feel(style)
     layout = [[sg.Text(f"Welcome back {username}", size = (30,1), font = 40, justification = CENTER)],
             [sg.Text("Would you like to use Voice or Text?", size =(30, 1),justification = CENTER,  font=30)],
             [sg.Button("Voice", size =(30, 1), font=40)],
@@ -353,8 +364,10 @@ def checkforsavedlogin():
                     line = decrpyt(text)
                     email, username, password,uuid = line.rstrip("\n").split(",")
                     if uuid == uuid1:
+                        file.close()
                         inputchoice(uuid,username)
                     else:
+                        file.close()
                         continue
         else:
             mainpage()

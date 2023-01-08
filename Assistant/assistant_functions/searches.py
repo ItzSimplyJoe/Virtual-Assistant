@@ -25,7 +25,7 @@ class Searches:
         "q": text,
         "hl": "en",
         "gl": "uk",
-        "api_key": "66389e9d77c7a748284122ebe6862574e12d62c7ec9b1b37774c279adebc5a77"
+        "api_key": ""
         }
 
         search = GoogleSearch(params)

@@ -8,9 +8,9 @@ import pyowm
 
 class Weather:
     def __init__(self):
-        self.own= pyowm.OWM("30b198a6beaedec7ee6eaaeb93a97837").weather_manager()
+        self.own= pyowm.OWM("").weather_manager()
 
-    def main(self, text, intent):
+    def main(self, text, intent, uuid, choice):
         samples = {
             'what is the weather' : {'function' : self.get_weather_at_current_location, 'type' : 'weather'},
             'temperature' : {'function' : self.get_weather_at_current_location, 'type' : 'temperature'},
@@ -20,14 +20,14 @@ class Weather:
 
         most_similar = determine_most_similar_phrase(text, samples)
         func = samples[most_similar]['function']
-        tempvar = func(samples[most_similar]['type'])
+        tempvar = func(samples[most_similar]['type'], uuid)
         print(tempvar)
-        speak_listen.say(tempvar)
+        speak_listen.say(tempvar,uuid)
     
-    def get_weather_at_current_location(self, type):
-        lat, lng = location.get_lat_lng()
+    def get_weather_at_current_location(self, type, uuid):
+        lat, lng = location.get_lat_lng(uuid)
         weather = self.own.weather_at_coords(lat, lng).weather
-        city = location.get_city_state_country()[0]
+        city = location.get_city_state_country(uuid)[0]
         temperature = int(round(weather.temperature(unit='fahrenheit')['temp'], 0))
 
         if type == 'temperature':
@@ -37,9 +37,9 @@ class Weather:
         elif type == 'weather':
             return f"Currently in {city}, it's {temperature} degrees and {weather.detailed_status}"
 
-    def get_weather_forecast(self):
+    def get_weather_forecast(self, uuid):
         location = Location()
-        lat, lng = location.get_lat_lng()
+        lat, lng = location.get_lat_lng(uuid)
 
         r = requests.get(f'https://api.weather.gov/points/{lat},{lng}')
         response = json.loads(r.text)
