@@ -65,6 +65,7 @@ class Text:
                     stufftooutput = assistant.reply(input,uuid,choice)
                     window['-OUTPUT-'].update(stufftooutput)
                 else:
+                    print("Please dont leave the box blank")
                     speak_listen.say("Please dont leave the box blank",uuid)
             elif event == "Logout":
                 window.close()
@@ -90,7 +91,7 @@ class Text:
                 except:
                     continue
             elif event == "Create a personal profile":
-                profile.main(uuid,choice)
+                profile.main(None,None,uuid,choice)
             elif event == "Audio Settings":
                 try:
                     textfunctions.audiosettings(uuid,choice)

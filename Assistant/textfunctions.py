@@ -133,13 +133,13 @@ class TextFunctions:
                 [sg.Checkbox("Title Font", key="-title-"), sg.Checkbox("Body Font", key="-body-")],
                 [sg.Button('Save'), sg.Button("Exit"), sg.Button("Restore Defaults")]]
 
-        window = sg.Window('Font Selection', layout)
+        window = sg.Window('Font Selection', layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
 
         while True:     # Event Loop
             event, values = window.read()
             if event in (sg.WIN_CLOSED, 'Exit'):
                 break
-            if event == "Save":
+            elif event == "Save":
                 font = values['-list-'][0]
                 size = int(values['-size-'])
                 title = values['-title-']
@@ -151,7 +151,7 @@ class TextFunctions:
                     self.font(uuid,choice)
                 else:
                     return(font,size,title,body)
-            if event == "Restore Defaults":
+            elif event == "Restore Defaults":
                 self.fontandcolourassigner(uuid,choice,"coolvetica rg",12,False,True,None)
                 self.fontandcolourassigner(uuid,choice,"coolvetica compressed hv",35,True,False,None)
                 window.close()
@@ -162,6 +162,7 @@ class TextFunctions:
 
 
     def logout(self,uuid,choice):
+        sg.change_look_and_feel('DarkGrey3')
         layout = [[sg.Text("Would you like to logout")],
                   [sg.Button("Yes"), sg.Button("No")]]
         window = sg.Window("Logout", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
@@ -190,7 +191,7 @@ class TextFunctions:
                             size=(20, 12), key='-LIST-', enable_events=True)],
                 [sg.Button('Exit'), sg.Button("Save"), sg.Button("Restore Defaults")]]
 
-        window = sg.Window('Look and Feel Browser', layout)
+        window = sg.Window('Look and Feel Browser', layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
 
         while True:  # Event Loop
             event, values = window.read()
@@ -201,6 +202,7 @@ class TextFunctions:
                 window.close()
                 return(theme)
             elif event == "Restore Defaults":
+                window.close()
                 return("DarkGrey3")
             sg.change_look_and_feel(values['-LIST-'][0])
             sg.popup_get_text('This is {}'.format(values['-LIST-'][0]))

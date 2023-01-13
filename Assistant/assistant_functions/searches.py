@@ -5,6 +5,11 @@ from serpapi import GoogleSearch
 
 
 class Searches:
+    def __init__(self):
+        with open(r"C:\Users\Owner\OneDrive\Desktop\keys.key", "r") as file:
+            for line in file:
+                key1,key2,key3 = line.rstrip("\n").split(",")
+        self.key2 = key2
     def main(self,text,intent, uuid,choice):
         samples = {
             'translate hello into french' : {'func' : self.translationsearch},
@@ -25,7 +30,7 @@ class Searches:
         "q": text,
         "hl": "en",
         "gl": "uk",
-        "api_key": ""
+        "api_key": self.key2
         }
 
         search = GoogleSearch(params)
@@ -52,7 +57,7 @@ class Searches:
         "q": text,
         "hl": "en",
         "gl": "uk",
-        "api_key": "66389e9d77c7a748284122ebe6862574e12d62c7ec9b1b37774c279adebc5a77"
+        "api_key": self.key2
         }
 
         search = GoogleSearch(params)
@@ -94,7 +99,7 @@ class Searches:
         "q": text,
         "hl": "en",
         "gl": "uk",
-        "api_key": "66389e9d77c7a748284122ebe6862574e12d62c7ec9b1b37774c279adebc5a77"
+        "api_key": self.key2
         }
 
         search = GoogleSearch(params)

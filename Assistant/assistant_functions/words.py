@@ -52,22 +52,22 @@ class Words:
         text = text.lower()
         if 'how to spell' in text:
             text = text.replace('how to spell','')
-            self.keywords(text)
+            self.keywords(text,uuid)
         if 'how do i spell' in text:
             text = text.replace('how do i spell','')
-            self.keywords(text)
+            self.keywords(text,uuid)
         if 'how do you spell' in text:
             text = text.replace('how do you spell','')
-            self.keywords(text)
+            self.keywords(text,uuid)
         if 'whats the opposite of' in text:
             text = text.replace('whats the opposite of','')
-            self.keywords(text)
+            self.keywords(text,uuid)
         if 'mean' in text:
             text = text.replace('mean', '')
-            self.keywords(text)
+            self.keywords(text,uuid)
         if 'what does' in text:
             text = text.replace('what does','')
-            self.keywords(text)
+            self.keywords(text,uuid)
         if ' ' in text:
             text = text.replace(' ', '')
         return text

@@ -20,6 +20,9 @@ This repository contains the code for a virtual assistant that can perform a var
 - Can speak and print responses back to you
 - Can create a timer
 - Can facilitate a friendly conversation
+- Can Tell you where you are currently
+- Can provide weather data about your current area
+- Can use ChatGPT to do anything that you need.
 
 ## Installation
 

@@ -3,6 +3,11 @@ import openai
 from assistant_functions.speak_listen import speak_listen
 import time
 class GPT:
+    def __init__(self):
+        with open(r"C:\Users\Owner\OneDrive\Desktop\keys.key", "r") as file:
+            for line in file:
+                key1,key2,key3 = line.rstrip("\n").split(",")
+        openai.api_key = key1
     def main(self,text,intent,uuid,choice):
         text = text.lower()
         if "using chat gpt" in text:
@@ -12,7 +17,6 @@ class GPT:
         elif "usingchatgpt" in text:
             text = text.replace("usingchatgpt","")
         print("Give me a moment...")
-        openai.api_key = ("sk-")
         query = text
         model = "text-davinci-003"
         response = openai.Completion.create(

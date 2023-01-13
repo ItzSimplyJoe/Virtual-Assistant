@@ -44,12 +44,13 @@ class Timer:
         self.timerscreen(time,uuid)
 
     def timercreate(self,text,uuid):
+        sg.theme("DarkGrey3")
         layout = [[sg.Text("   Input Your Time")],
                   [sg.Text("Hours", size =(7, 1)),sg.InputText("0", size =(7, 1),key = "-hours-")],
                   [sg.Text("Minutes", size =(7, 1)),sg.InputText("0", size =(7, 1),key = "-mins-")],
                   [sg.Text("Seconds", size =(7, 1)),sg.InputText("0", size =(7, 1),key = "-secs-")],
                   [sg.Button("Close"),sg.Text("  "),sg.Button("Submit")]]
-        window = sg.Window("Create a Timer", layout)
+        window = sg.Window("Create a Timer", layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)
         while True:
             event,values = window.read()
             if event == sg.WIN_CLOSED or event == "Close":
@@ -66,6 +67,7 @@ class Timer:
 
 
     def timerscreen(self,time,uuid):
+        sg.theme("DarkGrey3")
         layout = [[sg.Text("Time:"), sg.Text("TimeRemaining", size=(10,1), key="t")]]
 
         window = sg.Window("Timer",layout, resizable=False, titlebar_background_color="grey", titlebar_text_color="white", titlebar_icon="bager.ico", icon="badger.ico", element_justification="center", finalize=True)

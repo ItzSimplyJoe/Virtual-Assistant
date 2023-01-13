@@ -74,12 +74,12 @@ class Maths:
 
     def square(self,text,uuid):
         numbers = self.splittext(text,uuid)
-        total = maths.square(numbers[0])
+        total = int(numbers[0]) * int(numbers[0])
         self.printcalculate(total,uuid)
 
     def squareroot(self,text, uuid):
         numbers = self.splittext(text,uuid)
-        total = maths.squareroot(numbers[0])
+        total = math.sqrt(int(numbers[0]))
         self.printcalculate(total,uuid)
     
     def printcalculate(self, text, uuid):

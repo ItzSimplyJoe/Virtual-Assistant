@@ -33,7 +33,7 @@ class Assistant:
             'questions' : reply,
             'maths' : maths.main,
             'gpt' : gpt.main,
-            'searches' : searches.main,
+            'searches' : gpt.main,
             'words' : words.main,
             'music' : music.main,
             'jokes' : jokes.main,

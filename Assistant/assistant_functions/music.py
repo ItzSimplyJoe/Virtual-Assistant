@@ -1,15 +1,9 @@
-import os
 import pafy 
 import vlc 
 import time
-import random
 import re
-import requests
-import subprocess
 import urllib.parse
 import urllib.request
-from assistant_functions.speak_listen import Speak_Listen
-
 class Music:
     def main(self,text,intent,uuid,choice):
         text = text.lower()
