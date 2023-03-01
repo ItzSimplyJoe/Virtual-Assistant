@@ -26,12 +26,10 @@ class Maths:
             'squareroot' :{'func' : self.squareroot},
             'square' :{'func' : self.square},
             'squared' :{'func' : self.square},
-            'divded by' : {'func' : self.division},
             'divide' : {'func' : self.division},
             'divided by' : {'func' : self.division},
             'over' : {'func' : self.division},
             'plus' : {'func' : self.addition},
-            'add' : {'func' : self.addition}
         }
         
         most_similar = determine_most_similar_phrase(text, samples)

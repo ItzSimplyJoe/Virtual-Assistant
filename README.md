@@ -8,8 +8,11 @@ This repository contains the code for a virtual assistant that can perform a var
 - Can perform basic arithmetic calculations.
 - Uses machine learning
 - Can tell jokes
+- Can tell you the weather
 - Can create a personal profile
-- Can tell the date and time
+- Can tell the time
+- Can tell you the date
+- Can tell you the day of the week
 - Can tell the user how to spell things
 - Can theoretically control my light, but i moved house and havent set it up again
 - Has half a quiz feature built in
@@ -24,13 +27,22 @@ This repository contains the code for a virtual assistant that can perform a var
 - Can provide weather data about your current area
 - Can use ChatGPT to do anything that you need.
 
+## Future Features
+
+- Better answer formatting (Easier to understand)
+- Less Buggy
+- More languages
+- More features
+- Both voice and text in one UI at the same time
+
+
 ## Installation
 
 To use the virtual assistant, follow these steps:
 
 1. Clone this repository to your local machine.
 2. Install the required dependencies using `pip install -r requirements.txt`.
-3. Run the `SignupGUIs.py` file to start the virtual assistant.
+3. Run the `run.bat` or `hidebat.vbs` file to start the virtual assistant.
 
 ## Usage
 

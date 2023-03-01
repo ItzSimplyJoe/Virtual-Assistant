@@ -22,7 +22,7 @@ class Light:
         func = samples[most_similar]['func']
         func(text)
     def connect(self):
-        light = tinytuya.BulbDevice('bfcacafeb83ddc1734wxrv', '192.168.1.199', '816a7355360cf18c')
+        light = tinytuya.BulbDevice('bfcacafeb83ddc1734wxrv', '192.168.0.180', '816a7355360cf18c')
         light.set_version(3.3)
         light.set_socketPersistent(True)
         return light
