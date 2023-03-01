@@ -42,13 +42,17 @@ To use the virtual assistant, follow these steps:
 
 1. Clone this repository to your local machine.
 2. Install the required dependencies using `pip install -r requirements.txt`.
+<<<<<<< HEAD
 3. Run the `run.bat` or `hidebat.vbs` file to start the virtual assistant.
+=======
+3. Run the `hidebat.vbs` file to start the virtual assistant.
+>>>>>>> 2c1361d0e6af927bdd7cc03979636f2709c85e42
 
 ## Usage
 
 To interact with the virtual assistant, simply create an account, then login, chose voice or text and enjoy. The assistant will respond to your query and perform any actions that are necessary.
 
-For example, you can ask the assistant to "Where is hine" or "How are you today?"
+For example, you can ask the assistant to "Where is china" or "How are you today?"
 
 ## Contributing
 
