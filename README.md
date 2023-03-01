@@ -42,10 +42,7 @@ To use the virtual assistant, follow these steps:
 
 1. Clone this repository to your local machine.
 2. Install the required dependencies using `pip install -r requirements.txt`.
-<<<<<<< HEAD
 3. Run the `run.bat` or `hidebat.vbs` file to start the virtual assistant.
-=======
-3. Run the `hidebat.vbs` file to start the virtual assistant.
 
 ## Usage
 
