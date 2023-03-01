@@ -46,7 +46,6 @@ To use the virtual assistant, follow these steps:
 3. Run the `run.bat` or `hidebat.vbs` file to start the virtual assistant.
 =======
 3. Run the `hidebat.vbs` file to start the virtual assistant.
->>>>>>> 2c1361d0e6af927bdd7cc03979636f2709c85e42
 
 ## Usage
 
