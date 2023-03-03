@@ -1,8 +1,14 @@
-# Virtual Assistant
+#Virtual Assistant
+Virtual Assistant is a Python-based application that provides a conversational interface to perform various tasks. This project is built on the basis of natural language processing and machine learning.
 
-This repository contains the code for a virtual assistant that can perform a variety of tasks.
+##Installation
+Clone the repository by running git clone `https://github.com/ItzSimplyJoe/Virtual-Assistant.git`
+Change into the project directory by running cd Virtual-Assistant
+Install the required dependencies by running `pip install -r requirements.txt`
+Usage
+To start the virtual assistant, run python virtual_assistant.py in your terminal. This will open a command-line interface where you can interact with the virtual assistant.
 
-## Features
+##The virtual assistant can perform various tasks, including:
 
 - Can answer questions about a wide range of topics.
 - Can perform basic arithmetic calculations.
@@ -26,30 +32,23 @@ This repository contains the code for a virtual assistant that can perform a var
 - Can Tell you where you are currently
 - Can provide weather data about your current area
 - Can use ChatGPT to do anything that you need.
+- And more
 
-## Future Features
+##Configuration
+The virtual assistant allows you to customise the project.
 
-- Better answer formatting (Easier to understand)
-- Less Buggy
-- More languages
-- More features
-- Both voice and text in one UI at the same time
+ - name: The name of your virtual assistant, this can be found in the `main.py` file
+ - wake_words: A list of wake words that trigger the virtual assistant. This can be found inside of both the `voice.py` file and `assistant_functions/wakedetection.py`. You can simply train another wakeword here https://picovoice.ai/docs/quick-start/porcupine-python/ and then add that to the `Keywords` file and change the location inside of the `voice.py` file
+ - colour of UIs: All colours can be changed in the program and they are saved per each user
+ - Font in UIs: All fonts can be changed in the program and they are saved per each user
+ - Voice of Virtual Assistant: All voices can be changed in the program and they are saved per each user
+##Contribution Guidelines
+If you would like to contribute to this project, please follow these guidelines:
 
+Fork the repository and make your changes on a new branch.
+Submit a pull request to have your changes reviewed and merged into the main branch.
+Please ensure that your code is well-documented and follows PEP 8 style guidelines.
+##License
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
-## Installation
-
-To use the virtual assistant, follow these steps:
-
-1. Clone this repository to your local machine.
-2. Install the required dependencies using `pip install -r requirements.txt`.
-3. Run the `run.bat` or `hidebat.vbs` file to start the virtual assistant.
-
-## Usage
-
-To interact with the virtual assistant, simply create an account, then login, chose voice or text and enjoy. The assistant will respond to your query and perform any actions that are necessary.
-
-For example, you can ask the assistant to "Where is china" or "How are you today?"
-
-## Contributing
-
-If you would like to contribute to this project, please fork this repository and submit a pull request with your changes.
+If you have any questions or encounter any issues with this project, please feel free to create an issue on GitHub. Thank you for using Virtual Assistant!
