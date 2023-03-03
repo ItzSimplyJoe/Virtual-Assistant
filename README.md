@@ -1,14 +1,14 @@
-#Virtual Assistant
+# Virtual Assistant
 Virtual Assistant is a Python-based application that provides a conversational interface to perform various tasks. This project is built on the basis of natural language processing and machine learning.
 
-##Installation
-Clone the repository by running git clone `https://github.com/ItzSimplyJoe/Virtual-Assistant.git`
-Change into the project directory by running cd Virtual-Assistant
-Install the required dependencies by running `pip install -r requirements.txt`
-Usage
+## Installation
+1. Clone the repository by running git clone `https://github.com/ItzSimplyJoe/Virtual-Assistant.git`
+2. Change into the project directory by running cd Virtual-Assistant
+3. Install the required dependencies by running `pip install -r requirements.txt`
+## Usage
 To start the virtual assistant, run python virtual_assistant.py in your terminal. This will open a command-line interface where you can interact with the virtual assistant.
 
-##The virtual assistant can perform various tasks, including:
+## The virtual assistant can perform various tasks, including:
 
 - Can answer questions about a wide range of topics.
 - Can perform basic arithmetic calculations.
@@ -34,7 +34,7 @@ To start the virtual assistant, run python virtual_assistant.py in your terminal
 - Can use ChatGPT to do anything that you need.
 - And more
 
-##Configuration
+## Configuration
 The virtual assistant allows you to customise the project.
 
  - name: The name of your virtual assistant, this can be found in the `main.py` file
@@ -42,13 +42,13 @@ The virtual assistant allows you to customise the project.
  - colour of UIs: All colours can be changed in the program and they are saved per each user
  - Font in UIs: All fonts can be changed in the program and they are saved per each user
  - Voice of Virtual Assistant: All voices can be changed in the program and they are saved per each user
-##Contribution Guidelines
+## Contribution Guidelines
 If you would like to contribute to this project, please follow these guidelines:
 
-Fork the repository and make your changes on a new branch.
-Submit a pull request to have your changes reviewed and merged into the main branch.
-Please ensure that your code is well-documented and follows PEP 8 style guidelines.
-##License
+ - Fork the repository and make your changes on a new branch.
+ - Submit a pull request to have your changes reviewed and merged into the main branch.
+ - Please ensure that your code is well-documented and follows PEP 8 style guidelines.
+## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 If you have any questions or encounter any issues with this project, please feel free to create an issue on GitHub. Thank you for using Virtual Assistant!
