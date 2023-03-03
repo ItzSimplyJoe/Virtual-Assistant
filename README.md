@@ -1,6 +1,6 @@
 # Virtual Assistant
 ![python image](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
-Virtual Assistant is a Python-based application that provides a conversational interface to perform various tasks. This project is built on the basis of natural language processing and machine learning.
+########## Virtual Assistant is a Python-based application that provides a conversational interface to perform various tasks. This project is built on the basis of natural language processing and machine learning.
 
 ## Installation
 1. Clone the repository by running git clone `https://github.com/ItzSimplyJoe/Virtual-Assistant.git`
